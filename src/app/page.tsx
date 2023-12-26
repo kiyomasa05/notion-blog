@@ -3,7 +3,9 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <div>
-      <p>head</p>
+      <h1>遊ぶ
+      </h1><p>head</p>
+
     </div>
   )
 }
