@@ -12,7 +12,8 @@ export default async function Home() {
           <SinglePost
             title={post.title}
             description={post.description}
-            date={post.date}
+            postedAt={post.postedAt}
+            updatedAt={post.updatedAt}
             slug={post.slug}
             tags={post.tags}
           />

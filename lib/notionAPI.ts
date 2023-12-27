@@ -32,11 +32,16 @@ const getPageMetaData = (post: any) => {
     });
     return allTags;
   };
+  const getDay = (date: string) => {
+    const day = new Date(date);
+    return day.toLocaleDateString();
+  };
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
     description: post.properties.description.rich_text[0].plain_text,
-    date: post.properties.created_at.created_time,
+    postedAt: getDay(post.properties.created_at.created_time),
+    updatedAt: getDay(post.last_edited_time),
     slug: post.properties.slug.rich_text[0].plain_text,
     tags: getTags(post.properties.tags.multi_select),
   };
