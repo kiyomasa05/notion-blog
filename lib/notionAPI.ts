@@ -19,8 +19,9 @@ export const getAllPosts = async () => {
     return getPageMetaData(post);
   });
 };
+
 const getPageMetaData = (post: any) => {
-  const getTags = (tags: any) => {
+  const getTags = (tags: []) => {
     const allTags = tags.map((tag: any) => {
       return tag.name;
     });
@@ -31,7 +32,7 @@ const getPageMetaData = (post: any) => {
     title: post.properties.name.title[0].plain_text,
     description: post.properties.description.rich_text[0].plain_text,
     date: post.properties.created_at.created_time,
-    slag: post.properties.slag.rich_text[0].plain_text,
+    slug: post.properties.slug.rich_text[0].plain_text,
     tags: getTags(post.properties.tags.multi_select),
   };
 };
