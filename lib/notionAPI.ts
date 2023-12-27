@@ -36,3 +36,24 @@ const getPageMetaData = (post: any) => {
     tags: getTags(post.properties.tags.multi_select),
   };
 };
+
+// 引数のslugが同じpostを取得する
+export const getSinglePost = async (slug: string) => {
+  const res = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID,
+    // DBのslugフィールドから引数のslugを同じものを取得するquery
+    filter: {
+      property: "slug",
+      formula: {
+        string: {
+          equals: slug,
+        },
+      },
+    },
+  });
+
+  const page = res.results[0];
+  const metadata = getPageMetaData(page);
+  console.log(metadata);
+  return metadata;
+};
