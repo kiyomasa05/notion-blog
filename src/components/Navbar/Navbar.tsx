@@ -19,10 +19,10 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              href="#"
+              href="https://twitter.com/kiyoma_try"
               className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
             >
-              Twitter
+              X(旧Twitter)
             </Link>
           </li>
           <li>

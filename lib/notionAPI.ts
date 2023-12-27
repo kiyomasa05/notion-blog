@@ -1,9 +1,14 @@
 import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
+
+// notion-to-mdのインスタンス化
+// DOCS:https://www.npmjs.com/package/notion-to-md
+const n2m = new NotionToMarkdown({ notionClient: notion });
 
 //DOCS:developers.notion.com/reference/post-database-query
 export const getAllPosts = async () => {
@@ -54,6 +59,12 @@ export const getSinglePost = async (slug: string) => {
 
   const page = res.results[0];
   const metadata = getPageMetaData(page);
-  console.log(metadata);
-  return metadata;
+
+  const mdblocks = await n2m.pageToMarkdown(page.id);
+  const mdString = n2m.toMarkdownString(mdblocks);
+
+  return {
+    metadata,
+    markdown: mdString,
+  };
 };
