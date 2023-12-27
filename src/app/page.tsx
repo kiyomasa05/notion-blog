@@ -14,7 +14,7 @@ export default async function Home() {
             description={post.description}
             date={post.date}
             slug={post.slug}
-            tag={post.tags}
+            tags={post.tags}
           />
           {/* <p>{post.id}</p>
           <p>{post.title}</p> */}
