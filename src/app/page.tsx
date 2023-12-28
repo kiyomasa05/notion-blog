@@ -1,13 +1,13 @@
-import { getAllPosts } from "../../lib/notionAPI";
+import { getPostsForTopPage } from "../../lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 
 export default async function Home() {
-  const allPosts = await getAllPosts();
+  const fourPosts = await getPostsForTopPage(4);
 
   return (
     <div className="container w-full mt-16 lg:mx-auto">
       <h1 className="text-5xl font-medium text-center mb-16">Notion Blog</h1>
-      {allPosts.map((post, index) => (
+      {fourPosts.map((post, index) => (
         <div key={index} className="mx-4">
           <SinglePost
             title={post.title}
@@ -17,8 +17,6 @@ export default async function Home() {
             slug={post.slug}
             tags={post.tags}
           />
-          {/* <p>{post.id}</p>
-          <p>{post.title}</p> */}
         </div>
       ))}
     </div>
