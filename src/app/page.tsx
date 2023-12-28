@@ -5,16 +5,17 @@ export default async function Home() {
   const allPosts = await getAllPosts();
 
   return (
-    <div className="container w-full mt-16 ">
+    <div className="container w-full mt-16 lg:mx-auto">
       <h1 className="text-5xl font-medium text-center mb-16">Notion Blog</h1>
       {allPosts.map((post, index) => (
         <div key={index} className="mx-4">
           <SinglePost
             title={post.title}
             description={post.description}
-            date={post.date}
+            postedAt={post.postedAt}
+            updatedAt={post.updatedAt}
             slug={post.slug}
-            tag={post.tags}
+            tags={post.tags}
           />
           {/* <p>{post.id}</p>
           <p>{post.title}</p> */}
