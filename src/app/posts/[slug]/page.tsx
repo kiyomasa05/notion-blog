@@ -1,6 +1,11 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import { getSinglePost } from "../../../../lib/notionAPI";
 
 const Post = async ({ params }: { params: { slug: string } }) => {
@@ -30,7 +35,35 @@ const Post = async ({ params }: { params: { slug: string } }) => {
       ))}
 
       <div className="mt-10 font-medium">
-        <ReactMarkdown>{post.markdown.parent}</ReactMarkdown>
+        {/* <ReactMarkdown>
+          {post.markdown.parent}
+        </ReactMarkdown> */}
+        {/* <Markdown children={post.markdown.parent}></Markdown> */}
+        <Markdown
+          children={post.markdown.parent}
+          components={{
+            code(props) {
+              const { children, className, node, ...rest } = props;
+              const match = /language-(\w+)/.exec(className || "");
+              return match ? (
+                <SyntaxHighlighter
+                  {...rest}
+                  PreTag="div"
+                  children={String(children).replace(/\n$/, "")}
+                  language={match[1]}
+                  style={vscDarkPlus}
+                />
+              ) : (
+                <code {...rest} className={className}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        />
+        <Link href="/">
+          <span className="pb-20 block mt-3 text-sky-900">←ホームに戻る</span>
+        </Link>
       </div>
     </section>
   );

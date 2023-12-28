@@ -5,7 +5,7 @@ export default async function Home() {
   const allPosts = await getAllPosts();
 
   return (
-    <div className="container w-full mt-16 ">
+    <div className="container w-full mt-16 lg:mx-auto">
       <h1 className="text-5xl font-medium text-center mb-16">Notion Blog</h1>
       {allPosts.map((post, index) => (
         <div key={index} className="mx-4">
