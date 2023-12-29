@@ -3,10 +3,11 @@ import React from "react";
 
 interface Props {
   numberOfPage: number;
+  tagOfPage: boolean;
 }
 
 const Pagenation = (props: Props) => {
-  const { numberOfPage } = props;
+  const { numberOfPage, tagOfPage } = props;
 
   let pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
