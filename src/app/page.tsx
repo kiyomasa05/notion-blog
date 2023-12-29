@@ -1,15 +1,17 @@
 import { getPostsForTopPage } from "../../lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import Link from "next/link";
+import { BLOG_TITLE } from "./constants/constans";
 
 export default async function Home() {
   const fourPosts = await getPostsForTopPage(4);
 
   return (
     <div className="container w-full h-full mt-16 mx-auto">
-      <h1 className="text-5xl font-medium text-center mb-16">Notion Blog</h1>
-      {fourPosts.map((post, index) => (
-        <div key={index}>
+      {/* TODO：共通のヘッダーリファクタ */}
+      <h1 className="text-5xl font-medium text-center mb-16">{BLOG_TITLE}</h1>
+      {fourPosts.map((post) => (
+        <div key={post.id}>
           <SinglePost
             title={post.title}
             description={post.description}
