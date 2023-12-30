@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
+import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({
@@ -72,4 +73,63 @@ export const getSinglePost = async (slug: string) => {
     metadata,
     markdown: mdString,
   };
+};
+
+// Topページ用の記事の取得(4つ)
+export const getPostsForTopPage = async (pageSize: number) => {
+  const allPosts = await getAllPosts();
+  const fourPosts = allPosts.slice(0, pageSize);
+  return fourPosts;
+};
+
+// page番号に応じた記事を取得
+export const getPostByPage = async (page: number) => {
+  const allPosts = await getAllPosts();
+
+  const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
+  const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
+  return allPosts.slice(startIndex, endIndex);
+};
+
+// 全体のページ数を取得
+export const getNumberOfPages = async () => {
+  const allPosts = await getAllPosts();
+  return (
+    Math.floor(allPosts.length / NUMBER_OF_POSTS_PER_PAGE) +
+    (allPosts.length % NUMBER_OF_POSTS_PER_PAGE > 0 ? 1 : 0)
+  );
+};
+
+//tagと一致するポストを返す
+export const getPostsByTagAndPage = async (tagName: string, page: number) => {
+  const allPosts = await getAllPosts();
+  const posts = allPosts.filter((post) =>
+    post.tags.find((tag: string) => tag === tagName)
+  );
+
+  const startIndex = (page - 1) * NUMBER_OF_POSTS_PER_PAGE;
+  const endIndex = startIndex + NUMBER_OF_POSTS_PER_PAGE;
+  return posts.slice(startIndex, endIndex);
+};
+
+// tagと一致するポストのページ数を返す
+export const getNumberOfPagesByTag = async (tagName: string) => {
+  const allPosts = await getAllPosts();
+  const posts = allPosts.filter((post) =>
+    post.tags.find((tag: string) => tag === tagName)
+  );
+  return (
+    Math.floor(posts.length / NUMBER_OF_POSTS_PER_PAGE) +
+    (posts.length % NUMBER_OF_POSTS_PER_PAGE > 0 ? 1 : 0)
+  );
+};
+
+export const getAllTags = async () => {
+  const allPosts = await getAllPosts();
+
+  const allTagsDuplicationLists = allPosts.flatMap((post) => post.tags);
+  const set = new Set(allTagsDuplicationLists);
+  const allTagsList = Array.from(set);
+
+  return allTagsList;
 };
