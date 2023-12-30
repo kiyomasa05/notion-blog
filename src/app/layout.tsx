@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
-import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
 
 export const metadata: Metadata = {
   title: BLOG_TITLE,

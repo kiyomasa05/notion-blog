@@ -3,8 +3,8 @@ import {
   getNumberOfPagesByTag,
   getPostsByTagAndPage,
 } from "../../../../../../../lib/notionAPI";
-import SinglePost from "@/components/Blog/SinglePost";
 import { BLOG_TITLE } from "@/app/constants/constans";
+import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
 
@@ -39,7 +39,7 @@ const BlogTagPageList = async (context: any) => {
         ))}
       </section>
       <Pagenation numberOfPage={numberOfPageByTag} tag={currentTag} />
-      <Tag tags={allTags}/>
+      <Tag tags={allTags} />
     </div>
   );
 };

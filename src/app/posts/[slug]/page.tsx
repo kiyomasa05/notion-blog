@@ -35,12 +35,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
       ))}
 
       <div className="mt-10 font-medium">
-        {/* <ReactMarkdown>
-          {post.markdown.parent}
-        </ReactMarkdown> */}
-        {/* <Markdown children={post.markdown.parent}></Markdown> */}
         <Markdown
-          children={post.markdown.parent}
           components={{
             code(props) {
               const { children, className, node, ...rest } = props;
@@ -54,13 +49,13 @@ const Post = async ({ params }: { params: { slug: string } }) => {
                   style={vscDarkPlus}
                 />
               ) : (
-                <code {...rest} className={className}>
-                  {children}
-                </code>
+                <code>{children}</code>
               );
             },
           }}
-        />
+        >
+          {post.markdown.parent}
+        </Markdown>
         <Link href="/">
           <span className="pb-20 block mt-3 text-sky-900">←ホームに戻る</span>
         </Link>
