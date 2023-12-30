@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
-import ReactMarkdown from "react-markdown";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -41,14 +40,22 @@ const Post = async ({ params }: { params: { slug: string } }) => {
               const { children, className, node, ...rest } = props;
               const match = /language-(\w+)/.exec(className || "");
               return match ? (
+                // <SyntaxHighlighter
+                //   {...rest}
+                //   PreTag="div"
+                //   // eslint-disable-next-line react/no-children-prop
+                //   children={String(children).replace(/\n$/, "")}
+                //   language={match[1]}
+                //   style={vscDarkPlus}
+                // />
                 <SyntaxHighlighter
                   {...rest}
                   PreTag="div"
-                  // eslint-disable-next-line react/no-children-prop
-                  children={String(children).replace(/\n$/, "")}
                   language={match[1]}
                   style={vscDarkPlus}
-                />
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               ) : (
                 <code>{children}</code>
               );
