@@ -15,7 +15,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 export const getAllPosts = async () => {
   // DBのデータを取得
   const posts = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID|| "",
+    database_id: process.env.NOTION_DATABASE_ID || "",
     page_size: 100,
     filter: {
       property: "published",
@@ -61,7 +61,7 @@ const getPageMetaData = (post: any) => {
 // 引数のslugが同じpostを取得する
 export const getSinglePost = async (slug: string) => {
   const res = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID,
+    database_id: process.env.NOTION_DATABASE_ID || "",
     // DBのslugフィールドから引数のslugを同じものを取得するquery
     filter: {
       property: "slug",
