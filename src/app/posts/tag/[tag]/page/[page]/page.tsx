@@ -6,6 +6,7 @@ import {
 import SinglePost from "@/components/Blog/SinglePost";
 import { BLOG_TITLE } from "@/app/constants/constans";
 import Pagenation from "@/components/Pagination/Pagenation";
+import Tag from "@/components/Tag/Tag";
 
 const BlogTagPageList = async (context: any) => {
   const currentPage: string = context.params?.page;
@@ -16,7 +17,7 @@ const BlogTagPageList = async (context: any) => {
     parseInt(currentPage, 10)
   );
   const numberOfPageByTag = await getNumberOfPagesByTag(currentTag);
-  // const allTags = await getAllTags()
+  const allTags = await getAllTags();
 
   return (
     <div className="container w-full mt-16 mx-auto">
@@ -37,7 +38,8 @@ const BlogTagPageList = async (context: any) => {
           </div>
         ))}
       </section>
-      <Pagenation numberOfPage={numberOfPageByTag} tagOfPage={true} />
+      <Pagenation numberOfPage={numberOfPageByTag} tag={currentTag} />
+      <Tag tags={allTags}/>
     </div>
   );
 };

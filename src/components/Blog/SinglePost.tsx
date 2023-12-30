@@ -37,7 +37,7 @@ function SinglePost(props: Props) {
             </div>
             <div>
               {tags.map((tag: string, index: number) => (
-                <Link href="#" key={index}>
+                <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                   <span className="text-white bg-gray-500 rounded-xl px-2 pb-0.5 font-medium mr-2">
                     {tag}
                   </span>
@@ -60,7 +60,7 @@ function SinglePost(props: Props) {
             </div>
             <div>
               {tags.map((tag: string, index: number) => (
-                <Link href="#" key={index}>
+                <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                   <span className="text-white bg-gray-500 rounded-xl px-2 pb-0.5 font-medium mr-2">
                     {tag}
                   </span>

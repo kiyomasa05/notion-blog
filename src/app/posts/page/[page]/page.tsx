@@ -1,12 +1,18 @@
-import { getNumberOfPages, getPostByPage } from "../../../../../lib/notionAPI";
+import {
+  getAllTags,
+  getNumberOfPages,
+  getPostByPage,
+} from "../../../../../lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import { BLOG_TITLE } from "@/app/constants/constans";
 import Pagenation from "@/components/Pagination/Pagenation";
+import Tag from "@/components/Tag/Tag";
 
 const BlogPageList = async (context: any) => {
   const currentPage = context.params?.page;
   const postByPage = await getPostByPage(parseInt(currentPage));
   const numberOfPage = await getNumberOfPages();
+  const allTags = await getAllTags();
 
   return (
     <div className="container w-full mt-16 mx-auto">
@@ -27,7 +33,8 @@ const BlogPageList = async (context: any) => {
           </div>
         ))}
       </section>
-      <Pagenation numberOfPage={numberOfPage} />
+      <Pagenation numberOfPage={numberOfPage} tag={""} />
+      <Tag tags={allTags} />
     </div>
   );
 };

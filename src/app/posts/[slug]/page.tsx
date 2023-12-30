@@ -30,7 +30,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
           key={index}
           className="text-white bg-sky-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2"
         >
-          {tag}
+          <Link href={`/posts/tag/${tag}/page/1`}>{tag}</Link>
         </p>
       ))}
 

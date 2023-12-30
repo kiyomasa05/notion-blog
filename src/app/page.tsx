@@ -1,10 +1,12 @@
-import { getPostsForTopPage } from "../../lib/notionAPI";
-import SinglePost from "@/components/Blog/SinglePost";
 import Link from "next/link";
+import { getAllTags, getPostsForTopPage } from "../../lib/notionAPI";
 import { BLOG_TITLE } from "./constants/constans";
+import SinglePost from "@/components/Blog/SinglePost";
+import Tag from "@/components/Tag/Tag";
 
 export default async function Home() {
   const fourPosts = await getPostsForTopPage(4);
+  const allTags = await getAllTags();
 
   return (
     <div className="container w-full h-full mt-16 mx-auto">
@@ -29,6 +31,7 @@ export default async function Home() {
           ...もっとみる
         </span>
       </Link>
+      <Tag tags={allTags } />
     </div>
   );
 }

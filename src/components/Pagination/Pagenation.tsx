@@ -1,13 +1,14 @@
 import Link from "next/link";
 import React from "react";
+import { getPageLink } from "../../../lib/blog-helper";
 
 interface Props {
   numberOfPage: number;
-  tagOfPage: boolean;
+  tag: string ;
 }
 
 const Pagenation = (props: Props) => {
-  const { numberOfPage, tagOfPage } = props;
+  const { numberOfPage, tag } = props;
 
   let pages: number[] = [];
   for (let i = 1; i <= numberOfPage; i++) {
@@ -19,7 +20,7 @@ const Pagenation = (props: Props) => {
         {pages.map((page) => (
           <li key={page} className="bg-sky-900 rounded-lg w-6 h-8 relative">
             <Link
-              href={`/posts/page/${page}`}
+              href={getPageLink(tag, page)}
               className="absolute top-2/4 left-2/4
           -translate-x-2/4 -translate-y-2/4 text-gray-100"
             >
