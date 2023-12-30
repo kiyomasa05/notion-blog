@@ -44,6 +44,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
                 <SyntaxHighlighter
                   {...rest}
                   PreTag="div"
+                  // eslint-disable-next-line react/no-children-prop
                   children={String(children).replace(/\n$/, "")}
                   language={match[1]}
                   style={vscDarkPlus}
