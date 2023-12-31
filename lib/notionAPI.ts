@@ -47,6 +47,16 @@ const getPageMetaData = (post: any) => {
     const day = new Date(date);
     return day.toLocaleDateString();
   };
+  const getThumbnail = (originThumbnail: any) => {
+    const thumbnail =
+      originThumbnail === null
+        ? // 画像生成: https://placehold.jp/
+          "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE"
+        : originThumbnail.external.url;
+    return thumbnail;
+  };
+
+  // console.log(post.cover.external.url);
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
@@ -55,6 +65,7 @@ const getPageMetaData = (post: any) => {
     updatedAt: getDay(post.last_edited_time),
     slug: post.properties.slug.rich_text[0].plain_text,
     tags: getTags(post.properties.tags.multi_select),
+    thumbnail: getThumbnail(post.cover),
   };
 };
 

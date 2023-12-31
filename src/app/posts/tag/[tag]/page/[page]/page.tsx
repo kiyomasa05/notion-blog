@@ -33,6 +33,7 @@ const BlogTagPageList = async (context: any) => {
               slug={post.slug}
               tags={post.tags}
               id={post.id}
+              thumbnail={post.thumbnail}
               isPageNationPage={true}
             />
           </div>
