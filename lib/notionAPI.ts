@@ -1,7 +1,6 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
-import { url } from "inspector";
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({
