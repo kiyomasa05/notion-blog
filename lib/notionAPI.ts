@@ -49,8 +49,9 @@ const getPageMetaData = (post: any) => {
     return day.toLocaleDateString();
   };
   const getThumbnail = (originThumbnail) => {
-    const  thumbnail = (originThumbnail === null)
-        ? "NoImage"
+    const thumbnail = (originThumbnail === null)
+      // 画像生成: https://placehold.jp/
+        ? "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE"
         : originThumbnail.external.url;
     return thumbnail
   };

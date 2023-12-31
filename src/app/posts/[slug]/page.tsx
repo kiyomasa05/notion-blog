@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 import Markdown from "react-markdown";
@@ -13,8 +14,11 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
 
   return (
-    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
-      <h2 className="w-full text-2xl font-medium">{post.metadata.title}</h2>
+    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto">
+      <img src={post.metadata.thumbnail} alt="thunbnail" />
+      <h2 className="w-full text-2xl font-medium mt-5">
+        {post.metadata.title}
+      </h2>
       <div className="border-b-2 w-1/3  mt-1 border-sky-900"></div>
       <div className="mb-0 pb-0 flex justify-between">
         <span className="text-gray-500 block">
@@ -37,7 +41,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
         <Markdown
           components={{
             code(props) {
-              const { children, className, node,} = props;
+              const { children, className, node } = props;
               const match = /language-(\w+)/.exec(className || "");
               return match ? (
                 <SyntaxHighlighter
