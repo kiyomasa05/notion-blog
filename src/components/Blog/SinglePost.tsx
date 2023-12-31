@@ -9,6 +9,7 @@ type Props = {
   updatedAt: string;
   slug: string;
   tags: string[];
+  thumbnail: string;
   isPageNationPage: boolean;
 };
 
@@ -20,6 +21,7 @@ function SinglePost(props: Props) {
     updatedAt,
     slug,
     tags,
+    thumbnail,
     isPageNationPage,
   } = props;
   return (
@@ -51,7 +53,8 @@ function SinglePost(props: Props) {
         // Topページ
         <section className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300">
           <div>
-            <div className="lg:flex items-center gap-3">
+              <div className="lg:flex items-center gap-3">
+                { thumbnail ?<img src={thumbnail}/>:<div></div>}
               <h2 className="text-gray-100 text-2xl font-medium mb-2">
                 <Link href={`/posts/${slug}`}>{title}</Link>
               </h2>

@@ -37,20 +37,10 @@ const Post = async ({ params }: { params: { slug: string } }) => {
         <Markdown
           components={{
             code(props) {
-              // const { children, className, node, ...rest } = props;
               const { children, className, node,} = props;
               const match = /language-(\w+)/.exec(className || "");
               return match ? (
-                // <SyntaxHighlighter
-                //   {...rest}
-                //   PreTag="div"
-                //   // eslint-disable-next-line react/no-children-prop
-                //   children={String(children).replace(/\n$/, "")}
-                //   language={match[1]}
-                //   style={vscDarkPlus}
-                // />
                 <SyntaxHighlighter
-                  // {...rest}
                   PreTag="div"
                   language={match[1]}
                   style={vscDarkPlus}

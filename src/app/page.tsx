@@ -22,6 +22,7 @@ export default async function Home() {
             slug={post.slug}
             tags={post.tags}
             id={post.id}
+            thumbnail={post.thumbnail}
             isPageNationPage={false}
           />
         </div>
