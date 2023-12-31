@@ -7,6 +7,8 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { getSinglePost } from "../../../../lib/notionAPI";
 
+export const revalidate = 60 * 60 * 3;
+
 const Post = async ({ params }: { params: { slug: string } }) => {
   if (!params || typeof params.slug !== "string") return notFound();
 

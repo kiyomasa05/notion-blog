@@ -4,6 +4,9 @@ import { BLOG_TITLE } from "./constants/constans";
 import SinglePost from "@/components/Blog/SinglePost";
 import Tag from "@/components/Tag/Tag";
 
+// 3時間ごとにISR
+export const revalidate = 60 * 60 * 3;
+
 export default async function Home() {
   const fourPosts = await getPostsForTopPage(4);
   const allTags = await getAllTags();

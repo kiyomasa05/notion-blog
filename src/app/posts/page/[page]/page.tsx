@@ -8,6 +8,8 @@ import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
 
+export const revalidate = 60 * 60 * 3;
+
 const BlogPageList = async (context: any) => {
   const currentPage = context.params?.page;
   const postByPage = await getPostByPage(parseInt(currentPage));

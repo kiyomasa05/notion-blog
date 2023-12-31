@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
+import { cache } from "react";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
 
 //クライアント初期化 認証できているかをAuth
@@ -12,7 +13,7 @@ const notion = new Client({
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
 //DOCS:developers.notion.com/reference/post-database-query
-export const getAllPosts = async () => {
+export const getAllPosts = cache(async () => {
   // DBのデータを取得
   const posts = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID || "",
@@ -34,7 +35,7 @@ export const getAllPosts = async () => {
   return allPosts.map((post) => {
     return getPageMetaData(post);
   });
-};
+});
 
 const getPageMetaData = (post: any) => {
   const getTags = (tags: []) => {
@@ -56,7 +57,6 @@ const getPageMetaData = (post: any) => {
     return thumbnail;
   };
 
-  // console.log(post.cover.external.url);
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
