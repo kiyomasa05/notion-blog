@@ -37,7 +37,8 @@ const Post = async ({ params }: { params: { slug: string } }) => {
         <Markdown
           components={{
             code(props) {
-              const { children, className, node, ...rest } = props;
+              // const { children, className, node, ...rest } = props;
+              const { children, className, node,} = props;
               const match = /language-(\w+)/.exec(className || "");
               return match ? (
                 // <SyntaxHighlighter
@@ -49,10 +50,12 @@ const Post = async ({ params }: { params: { slug: string } }) => {
                 //   style={vscDarkPlus}
                 // />
                 <SyntaxHighlighter
-                  {...rest}
+                  // {...rest}
                   PreTag="div"
                   language={match[1]}
                   style={vscDarkPlus}
+                  showLineNumbers={true}
+                  wrapLongLines={true}
                 >
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
