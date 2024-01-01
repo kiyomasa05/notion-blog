@@ -22,7 +22,7 @@ const BlogTagPageList = async (context: any) => {
   const allTags = await getAllTags();
 
   return (
-    <div className="container w-full mt-16 mx-auto">
+    <div className="container w-full mt-24 mx-auto">
       <h1 className="text-5xl font-medium text-center mb-16">{BLOG_TITLE}</h1>
       <section className="sm:grid grid-cols-2 w-5/6 gap-3 mx-auto">
         {posts.map((post) => (

@@ -12,7 +12,7 @@ export default async function Home() {
   const allTags = await getAllTags();
 
   return (
-    <div className="container w-full h-full mt-16 mx-auto">
+    <div className="container w-full h-full mt-24 mx-auto">
       {/* TODO：共通のヘッダーリファクタ */}
       <h1 className="text-5xl font-medium text-center mb-10">{BLOG_TITLE}</h1>
       <div className="text-center mx-auto mb-6 text-xl font-medium lg:text-2xl">
@@ -37,9 +37,9 @@ export default async function Home() {
           </div>
         ))}
       </div>
-      <Link href="/posts/page/1">
-        <span className="mb-6 lg:w-1/2 mx-auto text-xl px-5 block text-right">
-          ...もっとみる
+      <Link href="/posts/page/2">
+        <span className="mb-6 w-48 lg:w-1/2 mx-auto text-xl px-5 py-2 block text-center border-solid border-2 border-blue-200 text-blue-400 rounded-md">
+          MORE →
         </span>
       </Link>
       <Tag tags={allTags} />
