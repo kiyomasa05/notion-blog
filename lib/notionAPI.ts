@@ -48,13 +48,18 @@ const getPageMetaData = (post: any) => {
     const day = new Date(date);
     return day.toLocaleDateString();
   };
+  console.log(post.cover);
   const getThumbnail = (originThumbnail: any) => {
-    const thumbnail =
-      originThumbnail === null
-        ? // 画像生成: https://placehold.jp/
-          "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE"
-        : originThumbnail.external.url;
-    return thumbnail;
+    if (originThumbnail === null) {
+      // 画像生成: https://placehold.jp/
+      return "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
+    } else if (originThumbnail.type === "file") {
+      return originThumbnail.file.url;
+    } else if (originThumbnail.type === "external") {
+      return originThumbnail.external.url;
+    } else {
+      return "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
+    }
   };
 
   return {
