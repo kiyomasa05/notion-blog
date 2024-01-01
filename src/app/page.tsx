@@ -14,7 +14,12 @@ export default async function Home() {
   return (
     <div className="container w-full h-full mt-16 mx-auto">
       {/* TODO：共通のヘッダーリファクタ */}
-      <h1 className="text-5xl font-medium text-center mb-16">{BLOG_TITLE}</h1>
+      <h1 className="text-5xl font-medium text-center mb-10">{BLOG_TITLE}</h1>
+      <div className="text-center mx-auto mb-6 text-xl font-medium lg:text-2xl">
+        <h3 className="text-center font-medium">New Posts</h3>
+        <p className="font-extralight text-sm m-0">新着記事</p>
+      </div>
+
       <div className="lg:grid lg:grid-cols-2 gap-4">
         {fourPosts.map((post) => (
           <div key={post.id} className="px-4">

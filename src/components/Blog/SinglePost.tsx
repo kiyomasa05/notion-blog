@@ -31,13 +31,11 @@ function SinglePost(props: Props) {
         <section className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300">
           <div>
             <div>
-              <img src={thumbnail} />
-              {/* <Image src={thumbnail} width={300} height={300} alt="thumbnail" /> */}
+              <img src={thumbnail} className="w-11/12 lg:w-full" />
               <h2 className="text-gray-100 text-2xl font-medium mb-2 mr-2">
                 <Link href={`/posts/${slug}`}>{title}</Link>
               </h2>
               <div className="text-gray-400 mr-4">投稿日：{postedAt}</div>
-              <div className="text-gray-400">更新日：{updatedAt}</div>
             </div>
             <div>
               {tags.map((tag: string, index: number) => (
@@ -53,16 +51,14 @@ function SinglePost(props: Props) {
         </section>
       ) : (
         // Topページ
-        <section className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300">
+        <section className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 min-h-full max-h-full">
           <div>
-            <img src={thumbnail} width="320px" />
-            {/* <Image src={thumbnail} width={300} height={300} alt="thumbnail" /> */}
+            <img src={thumbnail} className="w-11/12 lg:w-full" />
             <div className="items-center gap-3">
               <h2 className="text-gray-100 text-2xl font-medium mb-2">
                 <Link href={`/posts/${slug}`}>{title}</Link>
               </h2>
               <div className="text-gray-400">投稿日：{postedAt}</div>
-              <div className="text-gray-400">更新日：{updatedAt}</div>
             </div>
             <div>
               {tags.map((tag: string, index: number) => (

@@ -19,7 +19,7 @@ const BlogPageList = async (context: any) => {
   return (
     <div className="container w-full mt-16 mx-auto">
       <h1 className="text-5xl font-medium text-center mb-16">{BLOG_TITLE}</h1>
-      <section className="sm:grid grid-cols-2 w-5/6 gap-3 mx-auto">
+      <section className="sm:grid grid-cols-2  gap-3 mx-auto">
         {postByPage.map((post) => (
           <div key={post.id}>
             <SinglePost
