@@ -1,9 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getAllTags, getPostsForTopPage } from "../../lib/notionAPI";
-import { BLOG_TITLE } from "./constants/constans";
 import SinglePost from "@/components/Blog/SinglePost";
 import Tag from "@/components/Tag/Tag";
-import Image from "next/image";
 
 // 3時間ごとにISR
 export const revalidate = 60 * 60 * 3;
