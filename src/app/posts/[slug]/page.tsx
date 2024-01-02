@@ -15,7 +15,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
 
   return (
-    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto">
+    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
       <img src={post.metadata.thumbnail} alt="thunbnail" />
       <h2 className="w-full text-2xl font-medium mt-5">
         {post.metadata.title}

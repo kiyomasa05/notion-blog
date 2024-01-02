@@ -48,7 +48,6 @@ const getPageMetaData = (post: any) => {
     const day = new Date(date);
     return day.toLocaleDateString();
   };
-  console.log(post.cover);
   const getThumbnail = (originThumbnail: any) => {
     if (originThumbnail === null) {
       // 画像生成: https://placehold.jp/

@@ -11,8 +11,13 @@ img {
   object-fit: cover;
   margin: 10px auto;
 }
+h1 {
+  font-size: 2rem;
+  margin: 10px;
+  border-bottom: 2mm ridge #4169e1;
+}
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 h3 {
   font-size: 1.3rem;
