@@ -13,14 +13,13 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   if (!params || typeof params.slug !== "string") return notFound();
 
   const post = await getSinglePost(params.slug);
-
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
       <img src={post.metadata.thumbnail} alt="thunbnail" />
-      <h2 className="w-full text-2xl font-medium mt-5">
+      <h1 className="w-full text-2xl font-medium mt-5 border-none">
         {post.metadata.title}
-      </h2>
-      <div className="border-b-2 w-1/3  mt-1 border-sky-900"></div>
+      </h1>
+      <div className="border-b-2 w-2/3  mt-1 border-sky-900"></div>
       <div className="mb-0 pb-0 flex justify-between">
         <span className="text-gray-500 block">
           Posted date at {post.metadata.postedAt}

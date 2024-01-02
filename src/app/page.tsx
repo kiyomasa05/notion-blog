@@ -24,7 +24,7 @@ export default async function Home() {
       {/* <h1 className="text-5xl font-medium text-center mb-10 border-none">{BLOG_TITLE}</h1> */}
       <div className="container w-full h-full mx-auto">
         <div className="text-center mx-auto mb-6 text-xl font-medium lg:text-2xl">
-          <h3 className="text-center font-medium">New Posts</h3>
+          <h3 className="text-center font-medium border-none">New Posts</h3>
           <p className="font-extralight text-sm m-0">新着記事</p>
         </div>
 

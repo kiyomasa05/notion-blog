@@ -32,7 +32,7 @@ function SinglePost(props: Props) {
           <div>
             <div>
               <img src={thumbnail} className="w-11/12 lg:w-full" />
-              <h2 className="text-gray-100 text-2xl font-medium mb-2 mr-2">
+              <h2 className="text-gray-100 text-2xl font-medium mb-2 mr-2 border-none">
                 <Link href={`/posts/${slug}`}>{title}</Link>
               </h2>
               <div className="text-gray-400 mr-4">投稿日：{postedAt}</div>
@@ -55,7 +55,7 @@ function SinglePost(props: Props) {
           <div>
             <img src={thumbnail} className="w-11/12 lg:w-full" />
             <div className="items-center gap-3">
-              <h2 className="text-gray-100 text-2xl font-medium mb-2">
+              <h2 className="text-gray-100 text-2xl font-medium mb-2 border-none">
                 <Link href={`/posts/${slug}`}>{title}</Link>
               </h2>
               <div className="text-gray-400">投稿日：{postedAt}</div>

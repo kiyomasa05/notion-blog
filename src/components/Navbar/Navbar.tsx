@@ -12,7 +12,7 @@ const Navbar = () => {
       </div>
 
       <div className="container flex justify-center mx-auto">
-        <ul className="flex items-center text-sm">
+        <ul className="flex items-center text-sm list-none">
           <li>
             <Link
               href="/"
