@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { FaGithub, FaTwitter, FaHome } from "react-icons/fa";
 import { BLOG_TITLE } from "@/app/constants/constans";
 
 const Navbar = () => {
@@ -16,36 +17,27 @@ const Navbar = () => {
           <li>
             <Link
               href="/"
-              className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
+              className="block px-4 py-2 hover:text-sky-900 hover:bg-sky-500 transition-all duration-300"
             >
-              home
+              <FaHome size="20px" />
             </Link>
           </li>
           <li>
             <Link
               target="_blank"
               href="https://twitter.com/kiyoma_try"
-              className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
+              className="block px-4 py-2 hover:text-sky-900 hover:bg-sky-500 transition-all duration-300"
             >
-              X(旧Twitter)
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="https://qiita.com/kiyomasa05"
-              target="_blank"
-              className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
-            >
-              Qiita
+              <FaTwitter size="20px" />
             </Link>
           </li>
           <li>
             <Link
               target="_blank"
               href="https://github.com/kiyomasa05"
-              className="block px-4 py-2 hover:text-sky-900 transition-all duration-300"
+              className="block px-4 py-2 hover:text-sky-900 hover:bg-sky-500 transition-all duration-300"
             >
-              Github
+              <FaGithub size="20px" />
             </Link>
           </li>
         </ul>
