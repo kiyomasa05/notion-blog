@@ -42,7 +42,7 @@ function SinglePost(props: Props) {
         >
           <div>
             <div>
-              <img src={thumbnail} className="w-11/12 lg:w-full" />
+              <img src={thumbnail} className="w-11/12 lg:w-full max-h-80" />
               <h2 className="text-gray-100 text-2xl font-medium mb-2 mr-2 border-none">
                 <Link href={`/posts/${slug}`}>{title}</Link>
               </h2>
@@ -67,7 +67,7 @@ function SinglePost(props: Props) {
           className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 min-h-full max-h-full"
         >
           <div>
-            <img src={thumbnail} className="w-11/12 lg:w-full" />
+            <img src={thumbnail} className="w-11/12 lg:w-full max-h-80" />
             <div className="items-center gap-3">
               <h2 className="text-gray-100 text-2xl font-medium mb-2 border-none">
                 <Link href={`/posts/${slug}`}>{title}</Link>

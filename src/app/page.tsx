@@ -46,7 +46,7 @@ export default async function Home() {
             </div>
           ))}
         </div>
-        <Link href="/posts/page/2">
+        <Link href="/posts/page/1">
           <span className="mb-6 w-48 lg:w-1/2 mx-auto text-xl px-5 py-2 block text-center border-solid border-2 border-blue-200 text-blue-400 rounded-md">
             MORE →
           </span>
