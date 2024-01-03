@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { BLOG_TITLE } from "@/app/constants/constans";
 import { FaGithub, FaTwitter, FaHome } from "react-icons/fa";
+import { BLOG_TITLE } from "@/app/constants/constans";
 
 const Navbar = () => {
   return (

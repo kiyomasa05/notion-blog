@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
+import { MdCached, MdAccessTime } from "react-icons/md";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { MdCached, MdAccessTime } from "react-icons/md";
 
 import { getSinglePost } from "../../../../lib/notionAPI";
 
