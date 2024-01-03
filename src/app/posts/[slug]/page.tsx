@@ -4,6 +4,7 @@ import React from "react";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { MdCached, MdAccessTime } from "react-icons/md";
 
 import { getSinglePost } from "../../../../lib/notionAPI";
 
@@ -14,18 +15,19 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
   const post = await getSinglePost(params.slug);
   return (
-    <section className="container lg:px-2 px-5 h-screen lg:w-2/5 mx-auto mt-20">
+    <section className="container lg:px-2 px-5 h-screen lg:w-3/5 mx-auto mt-24">
       <img src={post.metadata.thumbnail} alt="thunbnail" />
       <h1 className="w-full text-2xl font-medium mt-5 border-none">
         {post.metadata.title}
       </h1>
       <div className="border-b-2 w-2/3  mt-1 border-sky-900"></div>
       <div className="mb-0 pb-0 flex justify-between">
-        <span className="text-gray-500 block">
-          Posted date at {post.metadata.postedAt}
+        <span className="text-gray-500 flex items-center">
+          <MdAccessTime className="mr-1" /> {post.metadata.postedAt}
         </span>
-        <span className="text-gray-500 block">
-          Updated date at {post.metadata.updatedAt}
+        <span className="text-gray-500 flex items-center">
+          <MdCached className="mr-1" />
+          {post.metadata.updatedAt}
         </span>
       </div>
       {post.metadata.tags.map((tag: String, index: number) => (
