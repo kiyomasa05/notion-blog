@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -24,11 +26,20 @@ function SinglePost(props: Props) {
     thumbnail,
     isPageNationPage,
   } = props;
+
+  const router = useRouter();
+  const handlePage = () => {
+    router.push(`/posts/${slug}`);
+  };
+
   return (
     <div>
       {isPageNationPage ? (
         // ページネーションされている側
-        <section className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300">
+        <section
+          onClick={handlePage}
+          className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300"
+        >
           <div>
             <div>
               <img src={thumbnail} className="w-11/12 lg:w-full" />
@@ -51,7 +62,10 @@ function SinglePost(props: Props) {
         </section>
       ) : (
         // Topページ
-        <section className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 min-h-full max-h-full">
+        <section
+          onClick={handlePage}
+          className="bg-sky-900 mb-8 mx-auto rounded-md p-5 shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 min-h-full max-h-full"
+        >
           <div>
             <img src={thumbnail} className="w-11/12 lg:w-full" />
             <div className="items-center gap-3">
