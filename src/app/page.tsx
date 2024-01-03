@@ -20,6 +20,7 @@ export default async function Home() {
         width={850}
         alt="topimage"
         className="h-full"
+        priority={true}
       />
       {/* <h1 className="text-5xl font-medium text-center mb-10 border-none">{BLOG_TITLE}</h1> */}
       <div className="container w-full h-full mx-auto">
