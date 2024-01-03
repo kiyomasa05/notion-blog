@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import { FaGithub, FaTwitter, FaHome } from "react-icons/fa";
+import { FaGithub, FaHome } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { BLOG_TITLE } from "@/app/constants/constans";
 
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
               href="https://twitter.com/kiyoma_try"
               className="block px-4 py-2 hover:text-sky-900 hover:bg-sky-500 transition-all duration-300"
             >
-              <FaTwitter size="20px" />
+              <FaXTwitter size="20px" />
             </Link>
           </li>
           <li>
