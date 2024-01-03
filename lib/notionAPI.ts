@@ -44,20 +44,34 @@ const getPageMetaData = (post: any) => {
     });
     return allTags;
   };
-  const getDay = (date: string) => {
-    const day = new Date(date);
-    return day.toLocaleDateString();
+  const getDay = (stringDate: string) => {
+    const date = new Date(stringDate);
+    const [month, day, year] = [
+      date.getMonth() + 1,
+      date.getDate(),
+      date.getFullYear(),
+    ];
+    // 二桁にフォーマット
+    const formatMonth = month < 10 ? "0" + month : month;
+    const formatDay = day < 10 ? "0" + day : day;
+    const formatDate = `${year}年 ${formatMonth}月 ${formatDay}日`;
+    return formatDate;
   };
   const getThumbnail = (originThumbnail: any) => {
-    if (originThumbnail === null) {
-      // 画像生成: https://placehold.jp/
-      return "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
-    } else if (originThumbnail.type === "file") {
-      return originThumbnail.file.url;
-    } else if (originThumbnail.type === "external") {
-      return originThumbnail.external.url;
-    } else {
-      return "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
+    const placeholderURL =
+      "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
+
+    if (originThumbnail === null || !originThumbnail.type) {
+      return placeholderURL;
+    }
+
+    switch (originThumbnail.type) {
+      case "file":
+        return originThumbnail.file?.url || placeholderURL;
+      case "external":
+        return originThumbnail.external?.url || placeholderURL;
+      default:
+        return placeholderURL;
     }
   };
 
@@ -65,7 +79,7 @@ const getPageMetaData = (post: any) => {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
     description: post.properties.description.rich_text[0].plain_text,
-    postedAt: getDay(post.properties.created_at.created_time),
+    postedAt: getDay(post.properties.created_at.date.start),
     updatedAt: getDay(post.last_edited_time),
     slug: post.properties.slug.rich_text[0].plain_text,
     tags: getTags(post.properties.tags.multi_select),
