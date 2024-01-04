@@ -12,7 +12,7 @@ export default async function Home() {
   const allTags = await getAllTags();
 
   return (
-    <div className=" mt-16 container lg:w-10/12 mx-auto">
+    <div className="mt-16 container w-full mx-auto lg:w-10/12 ">
       {/* TODO：共通のヘッダーリファクタ */}
       {/* TODO：imageの左右の余白検討 */}
       <Image
@@ -29,7 +29,7 @@ export default async function Home() {
           <p className="font-extralight text-sm m-0">新着記事</p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 container w-11/12 mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-3 container lg:w-11/12 mx-auto">
           {fourPosts.map((post) => (
             <div key={post.id} className="px-1">
               <SinglePost
