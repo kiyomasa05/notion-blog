@@ -12,26 +12,26 @@ export default async function Home() {
   const allTags = await getAllTags();
 
   return (
-    <div className=" mt-16 ">
+    <div className=" mt-16 container lg:w-10/12 mx-auto">
       {/* TODO：共通のヘッダーリファクタ */}
+      {/* TODO：imageの左右の余白検討 */}
       <Image
         src="/youkoso.gif"
         height={410}
         width={850}
         alt="topimage"
-        className="h-full"
+        className="lg:h-4/6 lg:w-4/6 h-fit"
         priority={true}
       />
-      {/* <h1 className="text-5xl font-medium text-center mb-10 border-none">{BLOG_TITLE}</h1> */}
       <div className="container w-full h-full mx-auto">
         <div className="text-center mx-auto mb-6 text-xl font-medium lg:text-2xl">
           <h3 className="text-center font-medium border-none">New Posts</h3>
           <p className="font-extralight text-sm m-0">新着記事</p>
         </div>
 
-        <div className="lg:grid lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 container w-11/12 mx-auto">
           {fourPosts.map((post) => (
-            <div key={post.id} className="px-4">
+            <div key={post.id} className="px-1">
               <SinglePost
                 title={post.title}
                 description={post.description}

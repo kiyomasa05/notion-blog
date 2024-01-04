@@ -18,7 +18,7 @@ const BlogPageList = async (context: any) => {
 
   return (
     <div className="container w-full mt-24 mx-auto">
-      <h1 className="text-5xl font-medium text-center mb-16 border-none">{BLOG_TITLE}</h1>
+      <h1 className="text-5xl font-medium text-center mb-16 border-none">記事一覧</h1>
       <p className="text-xl text-center">
         現在{" "}
         <span className="font-bold text-2xl text-blue-600">{currentPage}</span>{" "}
