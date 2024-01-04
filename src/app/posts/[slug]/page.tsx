@@ -16,7 +16,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   const post = await getSinglePost(params.slug);
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-3/5 mx-auto mt-24">
-      <img src={post.metadata.thumbnail} alt="thunbnail" className="max-h-80" />
+      <img src={post.metadata.thumbnail} alt="thunbnail" className="max-h-60 lg:max-h-80" />
       <h1 className="w-full text-2xl font-medium mt-5 border-none">
         {post.metadata.title}
       </h1>
@@ -50,8 +50,6 @@ const Post = async ({ params }: { params: { slug: string } }) => {
                   PreTag="div"
                   language={match[1]}
                   style={vscDarkPlus}
-                  showLineNumbers={true}
-                  wrapLongLines={true}
                 >
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>

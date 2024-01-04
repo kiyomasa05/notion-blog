@@ -3,7 +3,6 @@ import {
   getNumberOfPages,
   getPostByPage,
 } from "../../../../../lib/notionAPI";
-import { BLOG_TITLE } from "@/app/constants/constans";
 import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
@@ -17,16 +16,18 @@ const BlogPageList = async (context: any) => {
   const allTags = await getAllTags();
 
   return (
-    <div className="container w-full mt-24 mx-auto">
-      <h1 className="text-5xl font-medium text-center mb-16 border-none">{BLOG_TITLE}</h1>
+    <div className="container w-full mt-24 mx-auto lg:w-10/12">
+      <h1 className="font-medium text-center mb-4 border-none text-lg lg:text-2xl">
+        記事一覧
+      </h1>
       <p className="text-xl text-center">
         現在{" "}
         <span className="font-bold text-2xl text-blue-600">{currentPage}</span>{" "}
         ページ目です
       </p>
-      <section className="sm:grid grid-cols-2  gap-3 mx-2 lg:mx-auto">
+      <section className="grid grid-cols-2 lg:grid-cols-3 container lg:w-11/12 mx-auto">
         {postByPage.map((post) => (
-          <div key={post.id}>
+          <div key={post.id} className="px-1">
             <SinglePost
               title={post.title}
               description={post.description}
