@@ -10,13 +10,45 @@ import { getSinglePost } from "../../../../lib/notionAPI";
 
 export const revalidate = 60 * 60 * 3;
 
+// マークダウンを加工する
+const customCode = (props: any) => {
+  const { children, className } = props;
+  const match = /language-(\w+)/.exec(className || "");
+  const lang = match && match[1] ? match[1] : "";
+  //言語がabapならiframeとして、ブログカードを返す
+  if (lang === "abap") {
+    return (
+      <iframe
+        className="mx-auto w-full max-w-7xl dark:opacity-80"
+        src={`https://hatenablog-parts.com/embed?url=${children}`}
+      />
+    );
+  }
+  //言語があればシンタックスハイライトとして返す
+  return match ? (
+    <SyntaxHighlighter PreTag="div" language={match[1]} style={vscDarkPlus}>
+      {String(children).replace(/\n$/, "")}
+    </SyntaxHighlighter>
+  ) : (
+    <code>{children}</code>
+  );
+};
+const articleComponents = {
+  code: customCode,
+};
+
 const Post = async ({ params }: { params: { slug: string } }) => {
   if (!params || typeof params.slug !== "string") return notFound();
 
   const post = await getSinglePost(params.slug);
+
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-3/5 mx-auto mt-24">
-      <img src={post.metadata.thumbnail} alt="thunbnail" className="max-h-60 lg:max-h-80" />
+      <img
+        src={post.metadata.thumbnail}
+        alt="thunbnail"
+        className="max-h-60 lg:max-h-80"
+      />
       <h1 className="w-full text-2xl font-medium mt-5 border-none">
         {post.metadata.title}
       </h1>
@@ -40,25 +72,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
       ))}
 
       <div className="mt-10 font-medium">
-        <Markdown
-          components={{
-            code(props) {
-              const { children, className, node } = props;
-              const match = /language-(\w+)/.exec(className || "");
-              return match ? (
-                <SyntaxHighlighter
-                  PreTag="div"
-                  language={match[1]}
-                  style={vscDarkPlus}
-                >
-                  {String(children).replace(/\n$/, "")}
-                </SyntaxHighlighter>
-              ) : (
-                <code>{children}</code>
-              );
-            },
-          }}
-        >
+        <Markdown components={ articleComponents }>
           {post.markdown.parent}
         </Markdown>
         <Link href="/">
@@ -70,3 +84,6 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 };
 
 export default Post;
+function code(props: any) {
+  throw new Error("Function not implemented.");
+}
