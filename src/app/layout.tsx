@@ -4,9 +4,12 @@ import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: BLOG_TITLE,
+  title: {
+    template: `%s | ${BLOG_TITLE}`,
+    default: BLOG_TITLE,
+  },
   description: BLOG_DISCRIPTION,
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_PROJECT_URL}`),
+  metadataBase: new URL(`https://${process.env.NEXT_PUBLIC_PROJECT_URL}`),
 };
 
 export default function RootLayout({
