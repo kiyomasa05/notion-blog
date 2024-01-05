@@ -20,7 +20,7 @@ export default async function Home() {
         height={410}
         width={850}
         alt="topimage"
-        className="lg:h-4/6 lg:w-4/6 h-fit"
+        className="lg:h-5/6 lg:w-4/6 h-fit"
         priority={true}
       />
       <div className="container w-full h-full mx-auto">
