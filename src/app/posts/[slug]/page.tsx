@@ -1,3 +1,4 @@
+import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -37,6 +38,21 @@ const articleComponents = {
   code: customCode,
 };
 
+// metadataを動的に取得
+// DOCS:https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
+export const generateMetadata = async (
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata
+) => {
+  const post = await getSinglePost(params.slug);
+  const metadata: Metadata = {
+    title: post.metadata.title,
+    description: post.metadata.description,
+    keywords: post.metadata.tags,
+  };
+  return metadata;
+};
+
 const Post = async ({ params }: { params: { slug: string } }) => {
   if (!params || typeof params.slug !== "string") return notFound();
 
@@ -72,7 +88,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
       ))}
 
       <div className="mt-10 font-medium">
-        <Markdown components={ articleComponents }>
+        <Markdown components={articleComponents}>
           {post.markdown.parent}
         </Markdown>
         <Link href="/">
@@ -84,6 +100,3 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 };
 
 export default Post;
-function code(props: any) {
-  throw new Error("Function not implemented.");
-}
