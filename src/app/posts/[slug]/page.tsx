@@ -1,5 +1,4 @@
-import { GET } from "@/app/api/og/route";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";

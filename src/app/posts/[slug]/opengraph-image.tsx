@@ -14,6 +14,8 @@ type Params = {
   params: { slug: string };
 };
 
+// DOCS:https://qiita.com/akt_10/items/1d9127ba0e3f4d3b1baa
+// DOCS:https://vercel.com/docs/functions/edge-functions/og-image-generation
 export default async function Image({ params: { slug } }: Params) {
   const post = await getSinglePost(slug);
   return new ImageResponse(
