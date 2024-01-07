@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.14",
+    "@vercel/og": "^0.6.2",
     "next": "14.0.4",
     "notion-to-md": "^3.1.1",
     "react": "^18",

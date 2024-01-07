@@ -1,3 +1,4 @@
+import { GET } from "@/app/api/og/route";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,7 +8,7 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import { getSinglePost } from "../../../../lib/notionAPI";
+import { getSinglePost } from "../../lib/notionAPI";
 
 export const revalidate = 60 * 60 * 3;
 
@@ -40,15 +41,16 @@ const articleComponents = {
 
 // metadataを動的に取得
 // DOCS:https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
-export const generateMetadata = async (
-  { params }: { params: { slug: string } },
-  parent: ResolvingMetadata
-) => {
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
   const post = await getSinglePost(params.slug);
   const metadata: Metadata = {
-    title: post.metadata.title,
-    description: post.metadata.description,
-    keywords: post.metadata.tags,
+    title: post?.metadata.title,
+    description: post?.metadata.description,
+    keywords: post?.metadata.tags,
   };
   return metadata;
 };
@@ -61,24 +63,24 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   return (
     <section className="container lg:px-2 px-5 h-screen lg:w-3/5 mx-auto mt-24">
       <img
-        src={post.metadata.thumbnail}
+        src={post?.metadata.thumbnail}
         alt="thunbnail"
         className="max-h-60 lg:max-h-80"
       />
       <h1 className="w-full text-2xl font-medium mt-5 border-none">
-        {post.metadata.title}
+        {post?.metadata.title}
       </h1>
       <div className="border-b-2 w-2/3  mt-1 border-sky-900"></div>
       <div className="mb-0 pb-0 flex justify-between">
         <span className="text-gray-500 flex items-center">
-          <MdAccessTime className="mr-1" /> {post.metadata.postedAt}
+          <MdAccessTime className="mr-1" /> {post?.metadata.postedAt}
         </span>
         <span className="text-gray-500 flex items-center">
           <MdCached className="mr-1" />
-          {post.metadata.updatedAt}
+          {post?.metadata.updatedAt}
         </span>
       </div>
-      {post.metadata.tags.map((tag: String, index: number) => (
+      {post?.metadata.tags.map((tag: String, index: number) => (
         <p
           key={index}
           className="text-white bg-sky-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2"

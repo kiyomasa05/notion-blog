@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
-import { getPageLink } from "../../../lib/blog-helper";
+import { getPageLink } from "../../app/lib/blog-helper";
 
 interface Props {
   numberOfPage: number;
-  tag: string ;
+  tag: string;
 }
 
 const Pagenation = (props: Props) => {
