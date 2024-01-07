@@ -90,7 +90,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
       <div className="mt-10 font-medium">
         <Markdown components={articleComponents}>
-          {post.markdown.parent}
+          {post?.markdown.parent}
         </Markdown>
         <Link href="/">
           <span className="pb-20 block mt-3 text-sky-900">←ホームに戻る</span>
