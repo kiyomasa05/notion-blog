@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAllTags, getPostsForTopPage } from "../../lib/notionAPI";
+import { getAllTags, getPostsForTopPage } from "./lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import Tag from "@/components/Tag/Tag";
 

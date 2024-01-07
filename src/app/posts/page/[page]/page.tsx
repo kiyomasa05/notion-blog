@@ -2,7 +2,7 @@ import {
   getAllTags,
   getNumberOfPages,
   getPostByPage,
-} from "../../../../../lib/notionAPI";
+} from "../../../lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
