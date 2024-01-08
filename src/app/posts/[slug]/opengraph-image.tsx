@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
-import { getSinglePost } from "@/app/lib/notionAPI";
 import { BLOG_TITLE } from "@/app/constants/constans";
+import { getSinglePost } from "@/app/lib/notionAPI";
 
 export const runtime = "edge";
 // useISR 1時間*3
