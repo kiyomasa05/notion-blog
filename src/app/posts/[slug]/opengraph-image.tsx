@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getSinglePost } from "@/app/lib/notionAPI";
+import { BLOG_TITLE } from "@/app/constants/constans";
 
 export const runtime = "edge";
 // useISR 1時間*3
@@ -25,8 +26,8 @@ export default async function Image({ params: { slug } }: Params) {
           height: "100%",
           width: "100%",
           display: "flex",
-          backgroundImage: "linear-gradient(135deg, #7dc7f8 10%, #027cd9 100%)",
-          color: "#f3f3f3",
+          backgroundImage: "linear-gradient(135deg, #f08080 10%, #8b0000 100%)",
+          color: "#1f1f1f",
           justifyContent: "center",
           alignItems: "center",
           padding: "0 2rem",
@@ -37,7 +38,7 @@ export default async function Image({ params: { slug } }: Params) {
             display: "flex",
             flexDirection: "column",
             padding: "3rem 4rem 2.5rem",
-            backgroundColor: "#181b29",
+            backgroundColor: "#fdfdfd",
             justifyContent: "space-between",
             borderRadius: "10px",
             width: "100%",
@@ -47,7 +48,7 @@ export default async function Image({ params: { slug } }: Params) {
           <p style={{ fontSize: 60, fontWeight: 700 }}>
             {post?.metadata.title}
           </p>
-          <p style={{ fontSize: 40, fontWeight: 500 }}>Oteto Blog</p>
+          <p style={{ fontSize: 40, fontWeight: 500 }}>{BLOG_TITLE}</p>
         </div>
       </div>
     ),
