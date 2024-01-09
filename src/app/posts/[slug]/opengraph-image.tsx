@@ -37,7 +37,7 @@ export default async function Image({ params: { slug } }: Params) {
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "3rem 4rem 2.5rem",
+            padding: "2rem 10rem 2.5rem",
             backgroundColor: "#fdfdfd",
             justifyContent: "space-between",
             borderRadius: "10px",

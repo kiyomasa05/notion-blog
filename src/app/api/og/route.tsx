@@ -5,7 +5,7 @@ export const runtime = "edge";
 // useISR 1時間*3
 export const revalidate = 60 * 60 * 3;
 
-export  async function GET(request: Request) {
+export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     // title?以降の文字列を取得
@@ -25,14 +25,14 @@ export  async function GET(request: Request) {
             color: "#1f1f1f",
             justifyContent: "center",
             alignItems: "center",
-            padding: "0 2rem",
+            padding: "1rem 2rem",
           }}
         >
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              padding: "3rem 4rem 2.5rem",
+              padding: "2rem 10rem 2.5rem",
               backgroundColor: "#fdfdfd",
               justifyContent: "space-between",
               borderRadius: "10px",
@@ -40,8 +40,8 @@ export  async function GET(request: Request) {
               height: "90%",
             }}
           >
-            <p style={{ fontSize: 60, fontWeight: 700 }}>{title}</p>
-            <p style={{ fontSize: 40, fontWeight: 500 }}>{BLOG_TITLE}</p>
+            <p style={{ fontSize: 70, fontWeight: "bolder" }}>{title}</p>
+            <p style={{ fontSize: 40, fontWeight: 900 }}>{BLOG_TITLE}</p>
           </div>
         </div>
       ),
