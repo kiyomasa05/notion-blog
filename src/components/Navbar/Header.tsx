@@ -8,7 +8,7 @@ const Header = () => {
       <div className="mx-auto text-center">
         <Link
           href="/"
-          className="text-xl lg:text-2xl font-medium whitespace-nowrap hover:text-rose-800  transition-all duration-300"
+          className="text-xl lg:text-2xl font-medium whitespace-nowrap text-black hover:text-rose-800  transition-all duration-300"
         >
           {BLOG_TITLE}
         </Link>

@@ -40,7 +40,7 @@ export async function GET(request: Request) {
               height: "90%",
             }}
           >
-            <p style={{ fontSize: 70, fontWeight: "bolder" }}>{title}</p>
+            <h2 style={{ fontSize: 70, fontWeight: "bold" }}>{title}</h2>
             <p style={{ fontSize: 40, fontWeight: 900 }}>{BLOG_TITLE}</p>
           </div>
         </div>

@@ -44,8 +44,13 @@ function SinglePost(props: Props) {
         <div className="p-1 lg:p-3">
           <div className="items-center gap-3">
             <div className="text-slate-100 text-xs">投稿日：{postedAt}</div>
-            <h2 className="text-slate-50 text-sm font-medium border-none lg:text-base lg:font-bold hover:text-red-400 duration-300">
-              <Link href={`/posts/${slug}`}>{title}</Link>
+            <h2 className="text-sm font-bold border-none lg:text-base lg:font-bold">
+              <Link
+                href={`/posts/${slug}`}
+                className="text-slate-50 hover:text-red-400 duration-300"
+              >
+                {title}
+              </Link>
             </h2>
           </div>
           <div className="absolute bottom-2 left-2 lg:bottom-3 lg:left-4">

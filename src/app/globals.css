@@ -53,6 +53,9 @@ blockquote>:first-child {
 blockquote>:last-child {
   margin-bottom: 0;
 }
+a{
+  color:rgb(97, 161, 200)
+}
 
 /* 960px以上に適用されるCSS（PC用） */
 @media screen and (min-width: 960px) {
