@@ -18,7 +18,7 @@ const Pagenation = (props: Props) => {
     <section className="mb-8 lg:w-1/2 mx-auto rounded-md p-5">
       <ul className="flex items-center justify-center gap-4 list-none">
         {pages.map((page) => (
-          <li key={page} className="bg-sky-900 rounded-lg w-6 h-8 relative">
+          <li key={page} className="bg-rose-700 rounded-lg w-6 h-8 relative">
             <Link
               href={getPageLink(tag, page)}
               className="absolute top-2/4 left-2/4
