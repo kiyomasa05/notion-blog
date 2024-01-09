@@ -9,7 +9,7 @@ import Footer from "@/components/Navbar/Footer";
 export const revalidate = 60 * 60 * 3;
 
 export default async function Home() {
-  const fourPosts = await getPostsForTopPage(4);
+  const fourPosts = await getPostsForTopPage(6);
   const allTags = await getAllTags();
 
   return (

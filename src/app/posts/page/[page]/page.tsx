@@ -22,7 +22,7 @@ const BlogPageList = async (context: any) => {
       </h1>
       <p className="text-xl text-center">
         現在{" "}
-        <span className="font-bold text-2xl text-blue-600">{currentPage}</span>{" "}
+        <span className="font-bold text-2xl text-red-600">{currentPage}</span>{" "}
         ページ目です
       </p>
       <section className="grid grid-cols-2 lg:grid-cols-3 container lg:w-11/12 mx-auto">
