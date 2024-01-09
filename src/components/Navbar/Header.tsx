@@ -4,11 +4,14 @@ import { FaGithub, FaHome } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { BLOG_TITLE } from "@/app/constants/constans";
 
-const Navbar = () => {
+const Header = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 px-5 bg-sky-200">
+    <nav className="fixed top-0 left-0 w-full z-50 px-5 bg-rose-200">
       <div className="mx-auto text-center">
-        <Link href="/" className="text-xl font-medium whitespace-nowrap">
+        <Link
+          href="/"
+          className="text-xl font-medium whitespace-nowrap hover:text-rose-800  transition-all duration-300"
+        >
           {BLOG_TITLE}
         </Link>
       </div>
@@ -47,4 +50,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

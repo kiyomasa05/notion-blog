@@ -36,13 +36,13 @@ function SinglePost(props: Props) {
     <div>
       <section
         onClick={handlePage}
-        className="bg-sky-900 mb-8 w-48 h-60  mx-auto rounded-md shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 relative lg:w-80 lg:h-80 "
+        className="bg-rose-700 mb-8 w-48 h-60  mx-auto rounded-md shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 relative lg:w-80 lg:h-80 "
       >
         <img src={thumbnail} className="w-full h-32 m-0 rounded-t-md lg:h-40" />
         <div className="p-1 lg:p-3">
           <div className="items-center gap-3">
-            <div className="text-gray-400 text-xs">投稿日：{postedAt}</div>
-            <h2 className="text-gray-100 text-sm font-medium border-none lg:text-base lg:font-bold">
+            <div className="text-slate-100 text-xs">投稿日：{postedAt}</div>
+            <h2 className="text-slate-50 text-sm font-medium border-none lg:text-base lg:font-bold">
               <Link href={`/posts/${slug}`}>{title}</Link>
             </h2>
           </div>

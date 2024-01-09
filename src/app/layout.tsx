@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
-import Navbar from "@/components/Navbar/Navbar";
+import Header from "@/components/Navbar/Header";
 import "./globals.css";
 import { Noto_Sans_JP } from "next/font/google";
-
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -27,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={notoSansJP.className}>
       <body>
-        <Navbar />
+        <Header />
         {children}
       </body>
     </html>
