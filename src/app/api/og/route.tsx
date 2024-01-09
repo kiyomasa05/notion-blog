@@ -50,7 +50,10 @@ export  async function GET(request: Request) {
           </div>
         </div>
       ),
-      { ...size }
+      {
+        width: 1200,
+        height: 630,
+      }
     );
   } catch (e: any) {
     console.log(`${e.message}`);
