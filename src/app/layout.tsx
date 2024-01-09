@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
 import Header from "@/components/Navbar/Header";
 import "./globals.css";
-import { Noto_Sans_JP } from "next/font/google";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
