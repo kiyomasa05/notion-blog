@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
 import Navbar from "@/components/Navbar/Navbar";
 import "./globals.css";
+import { Noto_Sans_JP } from "next/font/google";
+
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin"],
+  variable: "--font-noto-sans-jp",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={notoSansJP.className}>
       <body>
         <Navbar />
         {children}
