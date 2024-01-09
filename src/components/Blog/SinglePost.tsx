@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -12,6 +13,8 @@ type Props = {
   thumbnail: string;
   isPageNationPage: boolean;
 };
+
+export const revalidate = 60 * 60 * 3;
 
 function SinglePost(props: Props) {
   const {
@@ -29,9 +32,12 @@ function SinglePost(props: Props) {
     <div>
       <section className="bg-rose-700 mb-8 w-48 h-60  mx-auto rounded-md shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 relative lg:w-80 lg:h-80 ">
         <Link href={`/posts/${slug}`}>
-          <img
-            src={thumbnail}
+          <Image
+            src={`/api/og?title=${title}`}
             className="w-full h-32 m-0 rounded-t-md lg:h-40 hover:opacity-70 transition-all duration-300"
+            width={200}
+            height={200}
+            alt={"サムネイル"}
           />
         </Link>
 
