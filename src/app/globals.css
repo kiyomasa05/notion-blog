@@ -39,6 +39,20 @@ li {
   font-weight: 400;
   line-height: 1.6rem;
 }
+blockquote {
+    border-left: .4rem solid #ddd;
+    color: #777;
+    padding: 1em;
+    padding-right: 0;
+    margin: 1.5em 0;
+    font-size: .95em;
+}
+blockquote>:first-child {
+  margin-top: 0;
+}
+blockquote>:last-child {
+  margin-bottom: 0;
+}
 
 /* 960px以上に適用されるCSS（PC用） */
 @media screen and (min-width: 960px) {
