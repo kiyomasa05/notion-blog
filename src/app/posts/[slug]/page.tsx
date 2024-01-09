@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -62,10 +63,12 @@ const Post = async ({ params }: { params: { slug: string } }) => {
   return (
     <div>
       <section className="container lg:px-2 px-5 h-screen lg:w-3/5 mx-auto mt-24">
-        <img
-          src={post?.metadata.thumbnail}
-          alt="thunbnail"
+        <Image
+          src={`/api/og?title=${post?.metadata.title}`}
           className="max-h-60 lg:max-h-80"
+          width={600}
+          height={500}
+          alt={"サムネイル"}
         />
         <h1 className="w-full text-2xl font-medium mt-5 border-none">
           {post?.metadata.title}

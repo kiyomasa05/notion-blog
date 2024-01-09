@@ -2,6 +2,7 @@ import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { cache } from "react";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
+import CreateThumbnail from "@/components/CreateThumbnail/CreateThumbnail";
 
 export const revalidate = 60 * 60 * 3;
 
@@ -39,6 +40,7 @@ export const getAllPosts = cache(async () => {
   });
 });
 
+//TODO post型定義  like機能つけた後
 const getPageMetaData = (post: any) => {
   const getTags = (tags: []) => {
     const allTags = tags.map((tag: any) => {
@@ -60,7 +62,7 @@ const getPageMetaData = (post: any) => {
     return formatDate;
   };
   const getThumbnail = (originThumbnail: any) => {
-    const placeholderURL =
+    const placeholderURL = 
       "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
 
     if (originThumbnail === null || !originThumbnail.type) {
