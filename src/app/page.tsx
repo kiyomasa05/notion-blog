@@ -9,17 +9,17 @@ import Tag from "@/components/Tag/Tag";
 export const revalidate = 60 * 60 * 3;
 
 export default async function Home() {
-  const fourPosts = await getPostsForTopPage(6);
+  const sixPosts = await getPostsForTopPage(6);
   const allTags = await getAllTags();
 
   return (
     <div>
-      <div className="mt-16 container w-full mx-auto lg:w-10/12 ">
+      <div className="mt-16 container w-full mx-auto lg:w-10/12">
         {/* TODO：共通のヘッダーリファクタ */}
         {/* TODO：imageの左右の余白検討 */}
         <Image
-          src="/youkoso.gif"
-          height={410}
+          src="/youkoso.jpg"
+          height={600}
           width={850}
           alt="topimage"
           className="lg:h-5/6 lg:w-4/6 h-fit"
@@ -32,7 +32,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-3 container lg:w-11/12 mx-auto">
-            {fourPosts.map((post) => (
+            {sixPosts.map((post) => (
               <div key={post.id} className="px-1">
                 <SinglePost
                   title={post.title}
