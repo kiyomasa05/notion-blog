@@ -4,6 +4,7 @@ import { getAllTags, getPostsForTopPage } from "./lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import Footer from "@/components/Navbar/Footer";
 import Tag from "@/components/Tag/Tag";
+import Slider from "@/components/Splide/Splide";
 
 // 3時間ごとにISR
 export const revalidate = 60 * 60 * 3;
@@ -17,14 +18,7 @@ export default async function Home() {
       <div className="mt-16 container w-full mx-auto lg:w-10/12">
         {/* TODO：共通のヘッダーリファクタ */}
         {/* TODO：imageの左右の余白検討 */}
-        <Image
-          src="/youkoso.jpg"
-          height={600}
-          width={850}
-          alt="topimage"
-          className="lg:h-5/6 lg:w-4/6 h-fit"
-          priority={true}
-        />
+        <Slider />
         <div className="container w-full h-full mx-auto">
           <div className="text-center mx-auto mb-6 text-xl font-medium lg:text-2xl">
             <h3 className="text-center font-medium border-none">New Posts</h3>
