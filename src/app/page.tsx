@@ -3,8 +3,8 @@ import Link from "next/link";
 import { getAllTags, getPostsForTopPage } from "./lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import Footer from "@/components/Navbar/Footer";
-import Tag from "@/components/Tag/Tag";
 import Slider from "@/components/Splide/Splide";
+import Tag from "@/components/Tag/Tag";
 
 // 3時間ごとにISR
 export const revalidate = 60 * 60 * 3;

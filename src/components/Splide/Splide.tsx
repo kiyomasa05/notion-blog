@@ -1,7 +1,6 @@
 "use client";
-import Image from "next/image";
-import React from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import Image from "next/image";
 import "@splidejs/react-splide/css";
 
 const Slider = () => {
