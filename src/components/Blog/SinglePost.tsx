@@ -53,7 +53,7 @@ function SinglePost(props: Props) {
               </Link>
             </h2>
           </div>
-          <div className="absolute bottom-2 left-2 lg:bottom-3 lg:left-4">
+          {/* <div className="w-full absolute bottom-2 left-1 lg:bottom-3 lg:left-4">
             {tags.map((tag: string, index: number) => (
               <Link href={`/posts/tag/${tag}/page/1`} key={index}>
                 <span className="text-white bg-gray-500 rounded-xl px-2 pb-0.5 font-medium text-xs mr-2">
@@ -61,7 +61,7 @@ function SinglePost(props: Props) {
                 </span>
               </Link>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
