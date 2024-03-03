@@ -62,7 +62,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div>
-      <section className="container lg:px-2 px-5 h-screen w-screen lg:w-3/5 mx-auto mt-24">
+      <section className="container lg:px-2 px-5 h-screen w-dvw lg:w-3/5 mx-auto mt-24">
         <Image
           src={`/api/og?title=${post?.metadata.title}`}
           className="max-h-60 lg:max-h-80"
