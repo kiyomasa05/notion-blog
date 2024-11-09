@@ -2,15 +2,13 @@ import { ImageResponse } from "next/og";
 import { BLOG_TITLE } from "@/app/constants/constans";
 
 export const runtime = "edge";
-// useISR 1時間*3
-export const revalidate = 60 * 60 * 3;
 export const size = {
   width: 1200,
   height: 630,
 };
 export const contentType = "image/png";
 
-export default async function CreateThumbnail(title:string) {
+export default async function CreateThumbnail(title: string) {
   return new ImageResponse(
     (
       <div
@@ -37,9 +35,7 @@ export default async function CreateThumbnail(title:string) {
             height: "90%",
           }}
         >
-          <p style={{ fontSize: 60, fontWeight: 700 }}>
-            {title}
-          </p>
+          <p style={{ fontSize: 60, fontWeight: 700 }}>{title}</p>
           <p style={{ fontSize: 40, fontWeight: 500 }}>{BLOG_TITLE}</p>
         </div>
       </div>

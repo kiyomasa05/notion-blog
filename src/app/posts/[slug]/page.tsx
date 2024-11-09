@@ -10,8 +10,6 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { getSinglePost } from "../../lib/notionAPI";
 
-export const revalidate = 60 * 60 * 3;
-
 type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

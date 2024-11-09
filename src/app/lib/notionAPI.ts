@@ -4,7 +4,6 @@ import { cache } from "react";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
 import CreateThumbnail from "@/components/CreateThumbnail/CreateThumbnail";
 
-export const revalidate = 60 * 60 * 3;
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({

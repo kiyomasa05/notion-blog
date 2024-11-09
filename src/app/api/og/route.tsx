@@ -2,8 +2,6 @@ import { ImageResponse } from "next/og";
 import { BLOG_TITLE } from "@/app/constants/constans";
 
 export const runtime = "edge";
-// useISR 1時間*3
-export const revalidate = 60 * 60 * 3;
 
 export async function GET(request: Request) {
   try {

@@ -14,8 +14,6 @@ type Props = {
   isPageNationPage: boolean;
 };
 
-export const revalidate = 60 * 60 * 3;
-
 function SinglePost(props: Props) {
   const {
     title,
