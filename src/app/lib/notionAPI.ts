@@ -62,7 +62,7 @@ const getPageMetaData = (post: any) => {
     return formatDate;
   };
   const getThumbnail = (originThumbnail: any) => {
-    const placeholderURL = 
+    const placeholderURL =
       "https://placehold.jp/a8a8b3/ffffff/320x240.png?text=NO-IMAGE";
 
     if (originThumbnail === null || !originThumbnail.type) {
@@ -82,7 +82,7 @@ const getPageMetaData = (post: any) => {
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
-    description: post.properties.description.rich_text[0].plain_text,
+    description: post.properties.description.rich_text[0]?.plain_text,// discriptionがない場合もある
     postedAt: getDay(post.properties.created_at.date.start),
     updatedAt: getDay(post.last_edited_time),
     slug: post.properties.slug.rich_text[0].plain_text,
