@@ -5,7 +5,7 @@ import React from "react";
 type Props = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   postedAt: string;
   updatedAt: string;
   slug: string;

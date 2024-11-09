@@ -41,7 +41,24 @@ export const getAllPosts = cache(async () => {
 });
 
 //TODO post型定義  like機能つけた後
-const getPageMetaData = (post: any) => {
+
+type PostMetaData = {
+  id: string;
+  title: string;
+  description?: string;
+  postedAt: string;
+  updatedAt: string;
+  slug: string;
+  tags: string[];
+  thumbnail: string;
+};
+
+/**
+ * 各notionブログのフィールドを変更し返す
+ * @param post
+ * @returns PostMetaData
+ */
+const getPageMetaData = (post: any): PostMetaData => {
   const getTags = (tags: []) => {
     const allTags = tags.map((tag: any) => {
       return tag.name;
@@ -82,7 +99,7 @@ const getPageMetaData = (post: any) => {
   return {
     id: post.id,
     title: post.properties.name.title[0].plain_text,
-    description: post.properties.description.rich_text[0]?.plain_text,// discriptionがない場合もある
+    description: post.properties.description.rich_text[0]?.plain_text, // discriptionがない場合もある
     postedAt: getDay(post.properties.created_at.date.start),
     updatedAt: getDay(post.last_edited_time),
     slug: post.properties.slug.rich_text[0].plain_text,
