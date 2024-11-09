@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -10,7 +10,10 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { getSinglePost } from "../../lib/notionAPI";
 
-export const revalidate = 60 * 60 * 3;
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 // マークダウンを加工する
 const customCode = (props: any) => {
@@ -41,24 +44,23 @@ const articleComponents = {
 
 // metadataを動的に取得
 // DOCS:https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { slug: string };
-}) => {
-  const post = await getSinglePost(params.slug);
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const post = await getSinglePost((await params).slug); //params が Promise の場合、待機して解決された値を取得
   const metadata: Metadata = {
     title: post?.metadata.title,
     description: post?.metadata.description,
     keywords: post?.metadata.tags,
   };
   return metadata;
-};
+}
 
-const Post = async ({ params }: { params: { slug: string } }) => {
-  if (!params || typeof params.slug !== "string") return notFound();
+const Post = async ({ params, searchParams }: Props) => {
+  if (!params || typeof (await params).slug !== "string") return notFound();
 
-  const post = await getSinglePost(params.slug);
+  const post = await getSinglePost((await params).slug);
 
   return (
     <div>

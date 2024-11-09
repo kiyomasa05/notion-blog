@@ -6,8 +6,6 @@ import Footer from "@/components/Navbar/Footer";
 import Slider from "@/components/Splide/Splide";
 import Tag from "@/components/Tag/Tag";
 
-// 3時間ごとにISR
-export const revalidate = 60 * 60 * 3;
 
 export default async function Home() {
   const sixPosts = await getPostsForTopPage(6);

@@ -5,7 +5,7 @@ import React from "react";
 type Props = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   postedAt: string;
   updatedAt: string;
   slug: string;
@@ -13,8 +13,6 @@ type Props = {
   thumbnail: string;
   isPageNationPage: boolean;
 };
-
-export const revalidate = 60 * 60 * 3;
 
 function SinglePost(props: Props) {
   const {

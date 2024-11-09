@@ -3,8 +3,7 @@ import { BLOG_TITLE } from "@/app/constants/constans";
 import { getSinglePost } from "@/app/lib/notionAPI";
 
 export const runtime = "edge";
-// useISR 1時間*3
-export const revalidate = 60 * 60 * 3;
+
 export const size = {
   width: 1200,
   height: 630,
