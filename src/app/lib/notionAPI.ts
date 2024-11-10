@@ -3,7 +3,8 @@ import { NotionToMarkdown } from "notion-to-md";
 import { cache } from "react";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
 import CreateThumbnail from "@/components/CreateThumbnail/CreateThumbnail";
-
+import { PostMetaData } from "@/types/notion";
+import { unstable_cache } from "next/cache";
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({
@@ -40,17 +41,6 @@ export const getAllPosts = cache(async () => {
 });
 
 //TODO post型定義  like機能つけた後
-
-type PostMetaData = {
-  id: string;
-  title: string;
-  description?: string;
-  postedAt: string;
-  updatedAt: string;
-  slug: string;
-  tags: string[];
-  thumbnail: string;
-};
 
 /**
  * 各notionブログのフィールドを変更し返す
@@ -107,40 +97,49 @@ const getPageMetaData = (post: any): PostMetaData => {
   };
 };
 
-// 引数のslugが同じpostを取得する
-export const getSinglePost = async (slug: string) => {
-  try {
-    const res = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID || "",
-      // DBのslugフィールドから引数のslugを同じものを取得するquery
-      filter: {
-        property: "slug",
-        formula: {
-          string: {
-            equals: slug,
+/**
+ * 引数のslugが同じpostを取得する ISR
+ * DOC:https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#caching-data-with-an-orm-or-database
+ * @param slug string
+ * @returns {} ブログのmetadataとMarkDown
+ */
+export const getSinglePost = unstable_cache(
+  async (slug: string) => {
+    try {
+      const res = await notion.databases.query({
+        database_id: process.env.NOTION_DATABASE_ID || "",
+        // DBのslugフィールドから引数のslugを同じものを取得するquery
+        filter: {
+          property: "slug",
+          formula: {
+            string: {
+              equals: slug,
+            },
           },
         },
-      },
-    });
-    if (res.results.length === 0) {
-      // 与えられたslugに対する結果が見つからない場合の処理
-      console.error(`slug: ${slug} に対する結果が見つかりませんでした`);
-      return null;
+      });
+      if (res.results.length === 0) {
+        // 与えられたslugに対する結果が見つからない場合の処理
+        console.error(`slug: ${slug} に対する結果が見つかりませんでした`);
+        return null;
+      }
+      const page = res.results[0];
+      const metadata = getPageMetaData(page);
+
+      const mdblocks = await n2m.pageToMarkdown(page.id);
+      const mdString = n2m.toMarkdownString(mdblocks);
+
+      return {
+        metadata,
+        markdown: mdString,
+      };
+    } catch (e) {
+      console.error(e);
     }
-    const page = res.results[0];
-    const metadata = getPageMetaData(page);
-
-    const mdblocks = await n2m.pageToMarkdown(page.id);
-    const mdString = n2m.toMarkdownString(mdblocks);
-
-    return {
-      metadata,
-      markdown: mdString,
-    };
-  } catch (e) {
-    console.error(e);
-  }
-};
+  },
+  ["post"],
+  { revalidate: 60 * 60 * 24, tags: ["post"] } // 24hのISR
+);
 
 // Topページ用の記事の取得(4つ)
 export const getPostsForTopPage = async (pageSize: number) => {
