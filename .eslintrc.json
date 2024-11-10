@@ -15,6 +15,7 @@
     ]
   },
   "settings": {
+    // 参考:https://qiita.com/park-jh/items/009a6479aab96b3bf075
     "import/resolver": "webpack"
   }
 }
