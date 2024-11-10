@@ -61,7 +61,7 @@ export async function generateMetadata(
 }
 
 /**
- * ISRのため、ビルド時に静的にルートを生成しておくgenerateStaticParams
+ * ISRのため、ビルド時に静的にルートを生成しておくgenerateStaticParams(app router)
  * nextjs.org/docs/app/api-reference/functions/generate-static-params
  * @returns post.slugの配列（path情報）
  */
@@ -73,12 +73,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Post({
-  params: { slug },
-}: {
-  params: { slug: string };
-}) {
-  const post = await getSinglePost(slug);
+export default async function Post({ params }: { params: { slug: string } }) {
+  const post = await getSinglePost(params.slug);
 
   return (
     <div>
