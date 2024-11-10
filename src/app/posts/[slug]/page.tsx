@@ -8,7 +8,10 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import { getSinglePost } from "../../lib/notionAPI";
+import { getAllPosts, getSinglePost } from "../../lib/notionAPI";
+import { PostMetaData } from "@/types/notion";
+
+export const revalidate = 604800; // 1週間ごと
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -57,10 +60,25 @@ export async function generateMetadata(
   return metadata;
 }
 
-const Post = async ({ params, searchParams }: Props) => {
-  if (!params || typeof (await params).slug !== "string") return notFound();
+/**
+ * ISRのため、ビルド時に静的にルートを生成しておくgenerateStaticParams
+ * nextjs.org/docs/app/api-reference/functions/generate-static-params
+ * @returns post.slugの配列（path情報）
+ */
+export async function generateStaticParams() {
+  const posts: PostMetaData[] = await getAllPosts();
 
-  const post = await getSinglePost((await params).slug);
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+export default async function Post({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const post = await getSinglePost(slug);
 
   return (
     <div>
@@ -107,6 +125,4 @@ const Post = async ({ params, searchParams }: Props) => {
       </section>
     </div>
   );
-};
-
-export default Post;
+}

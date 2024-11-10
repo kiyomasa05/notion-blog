@@ -4,7 +4,6 @@ import { cache } from "react";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
 import CreateThumbnail from "@/components/CreateThumbnail/CreateThumbnail";
 import { PostMetaData } from "@/types/notion";
-import { unstable_cache } from "next/cache";
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({
@@ -103,43 +102,39 @@ const getPageMetaData = (post: any): PostMetaData => {
  * @param slug string
  * @returns {} ブログのmetadataとMarkDown
  */
-export const getSinglePost = unstable_cache(
-  async (slug: string) => {
-    try {
-      const res = await notion.databases.query({
-        database_id: process.env.NOTION_DATABASE_ID || "",
-        // DBのslugフィールドから引数のslugを同じものを取得するquery
-        filter: {
-          property: "slug",
-          formula: {
-            string: {
-              equals: slug,
-            },
+export const getSinglePost = async (slug: string) => {
+  try {
+    const res = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID || "",
+      // DBのslugフィールドから引数のslugを同じものを取得するquery
+      filter: {
+        property: "slug",
+        formula: {
+          string: {
+            equals: slug,
           },
         },
-      });
-      if (res.results.length === 0) {
-        // 与えられたslugに対する結果が見つからない場合の処理
-        console.error(`slug: ${slug} に対する結果が見つかりませんでした`);
-        return null;
-      }
-      const page = res.results[0];
-      const metadata = getPageMetaData(page);
-
-      const mdblocks = await n2m.pageToMarkdown(page.id);
-      const mdString = n2m.toMarkdownString(mdblocks);
-
-      return {
-        metadata,
-        markdown: mdString,
-      };
-    } catch (e) {
-      console.error(e);
+      },
+    });
+    if (res.results.length === 0) {
+      // 与えられたslugに対する結果が見つからない場合の処理
+      console.error(`slug: ${slug} に対する結果が見つかりませんでした`);
+      return null;
     }
-  },
-  ["post"],
-  { revalidate: 60 * 60 * 24, tags: ["post"] } // 24hのISR
-);
+    const page = res.results[0];
+    const metadata = getPageMetaData(page);
+
+    const mdblocks = await n2m.pageToMarkdown(page.id);
+    const mdString = n2m.toMarkdownString(mdblocks);
+
+    return {
+      metadata,
+      markdown: mdString,
+    };
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 // Topページ用の記事の取得(4つ)
 export const getPostsForTopPage = async (pageSize: number) => {
