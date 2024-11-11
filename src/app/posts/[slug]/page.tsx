@@ -73,8 +73,15 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const post = await getSinglePost(params.slug);
+// NEXT15でのparamsの指定の仕方注意 ParamsをPromise型にしないとbuild時に型エラーになる
+//  https://nextjs.org/docs/app/building-your-application/upgrading/version-15#async-request-apis-breaking-change
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getSinglePost(slug);
 
   return (
     <div>
