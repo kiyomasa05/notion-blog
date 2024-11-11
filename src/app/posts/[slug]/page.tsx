@@ -8,7 +8,10 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-import { getSinglePost } from "../../lib/notionAPI";
+import { getAllPosts, getSinglePost } from "../../lib/notionAPI";
+import { PostMetaData } from "@/types/notion";
+
+export const revalidate = 604800; // 1週間ごと
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -57,10 +60,28 @@ export async function generateMetadata(
   return metadata;
 }
 
-const Post = async ({ params, searchParams }: Props) => {
-  if (!params || typeof (await params).slug !== "string") return notFound();
+/**
+ * ISRのため、ビルド時に静的にルートを生成しておくgenerateStaticParams(app router)
+ * nextjs.org/docs/app/api-reference/functions/generate-static-params
+ * @returns post.slugの配列（path情報）
+ */
+export async function generateStaticParams() {
+  const posts: PostMetaData[] = await getAllPosts();
 
-  const post = await getSinglePost((await params).slug);
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+// NEXT15でのparamsの指定の仕方注意 ParamsをPromise型にしないとbuild時に型エラーになる
+//  https://nextjs.org/docs/app/building-your-application/upgrading/version-15#async-request-apis-breaking-change
+export default async function Post({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getSinglePost(slug);
 
   return (
     <div>
@@ -107,6 +128,4 @@ const Post = async ({ params, searchParams }: Props) => {
       </section>
     </div>
   );
-};
-
-export default Post;
+}

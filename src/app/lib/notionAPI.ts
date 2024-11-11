@@ -3,7 +3,7 @@ import { NotionToMarkdown } from "notion-to-md";
 import { cache } from "react";
 import { NUMBER_OF_POSTS_PER_PAGE } from "@/app/constants/constans";
 import CreateThumbnail from "@/components/CreateThumbnail/CreateThumbnail";
-
+import { PostMetaData } from "@/types/notion";
 
 //クライアント初期化 認証できているかをAuth
 const notion = new Client({
@@ -40,17 +40,6 @@ export const getAllPosts = cache(async () => {
 });
 
 //TODO post型定義  like機能つけた後
-
-type PostMetaData = {
-  id: string;
-  title: string;
-  description?: string;
-  postedAt: string;
-  updatedAt: string;
-  slug: string;
-  tags: string[];
-  thumbnail: string;
-};
 
 /**
  * 各notionブログのフィールドを変更し返す
@@ -107,7 +96,12 @@ const getPageMetaData = (post: any): PostMetaData => {
   };
 };
 
-// 引数のslugが同じpostを取得する
+/**
+ * 引数のslugが同じpostを取得する ISR
+ * DOC:https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#caching-data-with-an-orm-or-database
+ * @param slug string
+ * @returns {} ブログのmetadataとMarkDown
+ */
 export const getSinglePost = async (slug: string) => {
   try {
     const res = await notion.databases.query({
