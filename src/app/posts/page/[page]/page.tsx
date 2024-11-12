@@ -7,9 +7,31 @@ import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
 
-const BlogPageList = async (context: any) => {
-  const currentPage = context.params?.page;
-  const postByPage = await getPostByPage(parseInt(currentPage));
+export const revalidate = 604800; // 1週間ごと
+
+/**
+ * ビルド時にPostの数分、pageを作っておく
+ * nextjs.org/docs/app/api-reference/functions/generate-static-params
+ * @returns pages: {page: number}[]
+ */
+export async function generateStaticParams() {
+  const numberOfPage = await getNumberOfPages();
+  // page数分、配列を作る
+  let pages: { page: number }[] = Array(numberOfPage)
+    .fill(null)
+    .reduce((acc, _, i) => {
+      return [...acc, { page: i + 1 }];
+    }, []);
+
+  return { pages };
+}
+
+
+// NEXT15でのparamsの指定の仕方注意 ParamsをPromise型にしないとbuild時に型エラーになる
+//  https://nextjs.org/docs/app/building-your-application/upgrading/version-15#async-request-apis-breaking-change
+export default async function BlogPageList(params: Promise<{ page: number }>) {
+  const { page } = await params;
+  const postByPage = await getPostByPage(page);
   const numberOfPage = await getNumberOfPages();
   const allTags = await getAllTags();
 
@@ -19,8 +41,7 @@ const BlogPageList = async (context: any) => {
         記事一覧
       </h1>
       <p className="text-xl text-center">
-        現在{" "}
-        <span className="font-bold text-2xl text-red-600">{currentPage}</span>{" "}
+        現在 <span className="font-bold text-2xl text-red-600">{page}</span>{" "}
         ページ目です
       </p>
       <section className="grid grid-cols-2 lg:grid-cols-3 container lg:w-11/12 mx-auto">
@@ -44,6 +65,4 @@ const BlogPageList = async (context: any) => {
       <Tag tags={allTags} />
     </div>
   );
-};
-
-export default BlogPageList;
+}
