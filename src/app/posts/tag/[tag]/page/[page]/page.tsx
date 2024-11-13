@@ -9,9 +9,6 @@ import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
 
-// このページのやること
-// generateMatadata SEOのため。ISR化.SSG化
-
 export const revalidate = 604800; // 1週間ごと
 
 // ISR用のParams情報
