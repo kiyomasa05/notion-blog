@@ -7,15 +7,51 @@ import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
 import Tag from "@/components/Tag/Tag";
 
-const BlogTagPageList = async (context: any) => {
-  const currentPage: string = context.params?.page;
-  const currentTag: string = context.params?.tag.toString();
+// このページのやること
+// generateMatadata SEOのため。ISR化.SSG化
+// まずはSSG化
+
+export const revalidate = 604800; // 1週間ごと
+
+type Params = {
+  tag: string;
+  page: string;
+};
+
+/**
+ * ビルド時にタグごとのpageを作成しておく（複数の動的param）
+ * https://nextjs.org/docs/app/api-reference/functions/generate-static-params#multiple-dynamic-segments-in-a-route
+ * @returns Params[] [{tag:"string",page:"1"},{tag:"string",page:"2"},{tag:"bbb",page:"1"}]
+ */
+export async function generateStaticParams() {
+  const allTags: string[] = await getAllTags();
+  const results = [];
+
+  for (const tag of allTags) {
+    // tagごとのpage数を取得
+    const numOfPostsByTag = await getNumberOfPagesByTag(tag);
+
+    // ページ数分ループしてパラメータを生成
+    for (let page = 1; page <= numOfPostsByTag; page++) {
+      results.push({ tag, page: page.toString() });
+    }
+  }
+  return results;
+}
+export default async function BlogTagPageList({
+  params,
+}: {
+  params: Promise<Params>;
+}) {
+  const currentPage: string = (await params).page;
+  const currentTag: string = (await params).tag;
 
   const posts = await getPostsByTagAndPage(
     currentTag,
     parseInt(currentPage, 10)
   );
   const numberOfPageByTag = await getNumberOfPagesByTag(currentTag);
+  // TODO allTagはTagコンポーネントでやればいい、出力してるだけなんだから
   const allTags = await getAllTags();
 
   return (
@@ -47,6 +83,4 @@ const BlogTagPageList = async (context: any) => {
       <Tag tags={allTags} />
     </div>
   );
-};
-
-export default BlogTagPageList;
+}
