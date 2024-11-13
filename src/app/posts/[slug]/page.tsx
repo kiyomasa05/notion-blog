@@ -56,6 +56,10 @@ export async function generateMetadata(
     title: post?.metadata.title,
     description: post?.metadata.description,
     keywords: post?.metadata.tags,
+    openGraph: {
+      title: post?.metadata.title,
+      description: post?.metadata.description,
+    },
   };
   return metadata;
 }
