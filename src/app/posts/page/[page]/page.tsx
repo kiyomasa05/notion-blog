@@ -5,7 +5,7 @@ import {
 } from "../../../lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
 import Pagenation from "@/components/Pagination/Pagenation";
-import Tag from "@/components/Tag/Tag";
+import AllTagList from "@/components/Tag/AllTagList";
 
 export const revalidate = 604800; // 1週間ごと
 
@@ -71,7 +71,7 @@ export default async function BlogPageListPost({
         ))}
       </section>
       <Pagenation numberOfPage={numberOfPage} tag={""} />
-      <Tag tags={allTags} />
+      <AllTagList tags={allTags} />
     </div>
   );
 }
