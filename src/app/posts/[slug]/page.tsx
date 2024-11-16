@@ -89,7 +89,7 @@ export default async function Post({
 
   return (
     <div>
-      <section className="container lg:px-2 px-5 h-screen w-dvw lg:w-3/5 mx-auto mt-24">
+      <section className="container lg:px-2 px-5 h-screen w-dvw lg:w-3/5 mt-24 pb-24">
         <Image
           src={`/api/og?title=${post?.metadata.title}`}
           className="max-h-60 lg:max-h-80"
@@ -113,9 +113,12 @@ export default async function Post({
         {post?.metadata.tags.map((tag: String, index: number) => (
           <p
             key={index}
-            className="text-white bg-sky-900 rounded-xl font-medium mt-2 px-2 inline-block mr-2"
+            className="rounded-md bg-slate-200 text-black  mt-2 px-2 inline-block mr-2"
           >
-            <Link href={`/posts/tag/${tag}/page/1`} className="text-white">
+            <Link
+              href={`/posts/tag/${tag}/page/1`}
+              className="text-black cursor-pointer"
+            >
               {tag}
             </Link>
           </p>
@@ -125,8 +128,26 @@ export default async function Post({
           <Markdown components={articleComponents}>
             {post?.markdown.parent}
           </Markdown>
+          <hr className="mt-5" />
+          <div className="mt-5">
+            {post?.metadata.tags.map((tag: String, index: number) => (
+              <p
+                key={index}
+                className="rounded-md bg-slate-200 text-black  mt-2 px-2 mb-4 inline-block mr-2"
+              >
+                <Link
+                  href={`/posts/tag/${tag}/page/1`}
+                  className="text-black cursor-pointer"
+                >
+                  {tag}
+                </Link>
+              </p>
+            ))}
+          </div>
           <Link href="/">
-            <span className="pb-20 block mt-3 text-sky-900">←ホームに戻る</span>
+            <span className="bg-sky-700 mt-10 rounded-md py-4 px-2 text-white inline-block cursor-pointer text-xl">
+              ←ホームに戻る
+            </span>
           </Link>
         </div>
       </section>
