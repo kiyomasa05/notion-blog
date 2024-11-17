@@ -49,8 +49,11 @@ export default async function BlogPageListPost({
       <h1 className="font-medium text-center mb-4 border-none text-lg lg:text-2xl">
         記事一覧
       </h1>
-      <p className="text-xl text-center">
-        現在 <span className="font-bold text-2xl text-red-600">{page}</span>{" "}
+      <p className="text-xl text-center mb-10">
+        現在{" "}
+        <span className="font-bold text-2xl text-sky-700  mx-2 px-2">
+          {page}
+        </span>{" "}
         ページ目です
       </p>
       <section className="grid grid-cols-2 lg:grid-cols-3 container lg:w-11/12 mx-auto">

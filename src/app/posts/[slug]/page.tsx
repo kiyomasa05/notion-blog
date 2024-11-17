@@ -7,8 +7,10 @@ import { MdCached, MdAccessTime } from "react-icons/md";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-
 import { getAllPosts, getSinglePost } from "../../lib/notionAPI";
+// import styles from "@/styles/markdownPage.module.scss";
+import styles from "@/styles/markdownPage.module.scss";
+
 import { PostMetaData } from "@/types/notion";
 
 export const revalidate = 604800; // 1週間ごと
@@ -89,7 +91,7 @@ export default async function Post({
 
   return (
     <div>
-      <section className="container lg:px-2 px-5 h-screen w-dvw lg:w-3/5 mt-24 pb-24">
+      <section className="container lg:px-2 px-5 h-screen w-dvw lg:w-4/5 mx-auto mt-24 pb-24">
         <Image
           src={`/api/og?title=${post?.metadata.title}`}
           className="max-h-60 lg:max-h-80"
@@ -124,10 +126,8 @@ export default async function Post({
           </p>
         ))}
 
-        <div className="mt-10 font-medium">
-          <Markdown components={articleComponents}>
-            {post?.markdown.parent}
-          </Markdown>
+        <div className={`${styles.markdown} mt-10 font-medium`}>
+          <Markdown components={articleComponents}>{post?.markdown}</Markdown>
           <hr className="mt-5" />
           <div className="mt-5">
             {post?.metadata.tags.map((tag: String, index: number) => (

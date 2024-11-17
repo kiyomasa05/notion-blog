@@ -129,7 +129,7 @@ export const getSinglePost = async (slug: string) => {
 
     return {
       metadata,
-      markdown: mdString,
+      markdown: mdString.parent,
     };
   } catch (e) {
     console.error(e);

@@ -28,24 +28,24 @@ function SinglePost(props: Props) {
 
   return (
     <div>
-      <section className="bg-rose-700 mb-8 w-48 h-60  mx-auto rounded-md shadow-2xl hover:shadow-none hover:translate-y-1 transition-all duration-300 relative lg:w-80 lg:h-80 ">
+      <div className="bg-sky-700 mb-8 w-48 h-60  mx-auto rounded-md shadow-2xl hover:shadow-none hover:translate-y-1  transition-all duration-300 relative lg:w-80 lg:h-80 ">
         <Link href={`/posts/${slug}`}>
           <Image
             src={`/api/og?title=${title}`}
-            className="w-full h-32 m-0 rounded-t-md lg:h-40 hover:opacity-70 transition-all duration-300"
+            className="w-full h-32 m-0 rounded-t-md lg:h-40 hover:opacity-50 transition-all duration-300"
             width={200}
             height={200}
             alt={"サムネイル"}
           />
         </Link>
 
-        <div className="p-1 lg:p-3">
+        <div className="p-1 lg:p-3  hover:opacity-5">
           <div className="items-center gap-3">
             <div className="text-slate-100 text-xs">投稿日：{postedAt}</div>
             <h2 className="text-sm font-bold border-none lg:text-base lg:font-bold">
               <Link
                 href={`/posts/${slug}`}
-                className="text-slate-50 hover:text-red-400 duration-300"
+                className="text-slate-50 hover:text-sky-300 duration-300"
               >
                 {title}
               </Link>
@@ -61,7 +61,7 @@ function SinglePost(props: Props) {
             ))}
           </div> */}
         </div>
-      </section>
+      </div>
     </div>
   );
 }
