@@ -3,6 +3,23 @@ import { BLOG_TITLE } from "@/app/constants/constans";
 
 export const runtime = "edge";
 
+export const revalidate = 86400;
+
+type Params = {
+  title: string;
+};
+//localhost:3000/api/og?title="title"
+// リクエストを受ける形でOGのimageを返す
+
+// 現状定義したが使えてない
+// export async function generateStaticParams() {
+//   const posts: PostMetaData[] = await getAllPosts();
+
+//   return posts.map((post) => ({
+//     title: post.title,
+//   }));
+// }
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -10,7 +27,7 @@ export async function GET(request: Request) {
     const hasTitle = searchParams.has("title");
     const title = hasTitle
       ? searchParams.get("title")?.slice(0, 100)
-      : "My default title";
+      : BLOG_TITLE;
     return new ImageResponse(
       (
         <div
@@ -19,7 +36,7 @@ export async function GET(request: Request) {
             width: "100%",
             display: "flex",
             backgroundImage:
-              "linear-gradient(135deg, #f08080 10%, #8b0000 100%)",
+              "linear-gradient(135deg, #0285c7 10%,  #075985 100%)",
             color: "#1f1f1f",
             justifyContent: "center",
             alignItems: "center",

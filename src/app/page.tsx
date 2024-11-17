@@ -39,7 +39,7 @@ export default async function Home() {
             ))}
           </div>
           <Link href="/posts/page/1">
-            <span className="mb-6 w-40 lg:w-2/5 mx-auto text-lg px-5 py-1 lg:py-2 block text-center border-solid border-2 border-rose-500 text-rose-500 rounded-md font-medium hover:bg-rose-300 hover:text-rose-500 duration-300">
+            <span className="mb-6 w-40 lg:w-2/5 mx-auto text-lg px-5 py-1 lg:py-2 block text-center border-solid border-2 border-sky-600 text-sky-600 rounded-md font-medium hover:opacity-30  duration-300">
               MORE →
             </span>
           </Link>

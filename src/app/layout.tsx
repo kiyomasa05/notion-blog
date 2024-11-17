@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" className={notoSansJP.className}>
+    <html lang="ja" className={`${notoSansJP.className} bg-slate-100`}>
       <body>
         <Header />
         {children}

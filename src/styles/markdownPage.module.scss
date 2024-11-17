@@ -1,0 +1,102 @@
+// markdown用のスタイル
+.markdown {
+  h1 {
+    font-size: 2rem;
+    margin-top: 10px;
+    border-bottom: 2mm ridge #10b981;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 2.2rem; /* アイコンの幅 */
+      height: 2.2rem; /* アイコンの高さ */
+      background-image: url("/icons/iconhombus-green.png"); /* 画像へのパス */
+      background-size: contain; /* 画像全体を表示 */
+      background-repeat: no-repeat; /* 繰り返しを防ぐ */
+      margin-right: 8px; /* アイコンとテキストの間に余白 */
+      vertical-align: middle; /* アイコンとテキストを揃える */
+    }
+  }
+  h2 {
+    font-size: 1.8rem;
+    border-bottom: 1.5mm ridge #10b981;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 2.2rem; /* アイコンの幅 */
+      height: 2.2rem; /* アイコンの高さ */
+      background-image: url("/icons/iconstar-green.png"); /* 画像へのパス */
+      background-size: contain; /* 画像全体を表示 */
+      background-repeat: no-repeat; /* 繰り返しを防ぐ */
+      margin-right: 8px; /* アイコンとテキストの間に余白 */
+      vertical-align: middle; /* アイコンとテキストを揃える */
+    }
+  }
+  h3 {
+    font-size: 1.3rem;
+    margin: 5px 1px;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 20px; /* アイコンの幅 */
+      height: 20px; /* アイコンの高さ */
+      background-image: url("/icons/iconcube-green.png"); /* 画像へのパス */
+      background-size: contain; /* 画像全体を表示 */
+      background-repeat: no-repeat; /* 繰り返しを防ぐ */
+      margin-right: 8px; /* アイコンとテキストの間に余白 */
+      vertical-align: middle; /* アイコンとテキストを揃える */
+    }
+  }
+
+  p {
+    margin: 6px 0;
+    font-weight: 400;
+    line-height: 1.6rem;
+  }
+  ul {
+    list-style: disc;
+    padding-left: 40px;
+    margin: 6px 0;
+  }
+  li {
+    font-weight: 400;
+    line-height: 1.6rem;
+  }
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin: 10px auto;
+  }
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin: 10px auto;
+  }
+  /* 960px以上に適用されるCSS（PC用） */
+  @media screen and (min-width: 960px) {
+    img {
+      height: 100%;
+    }
+  }
+
+  blockquote {
+    border-left: 0.4rem solid #ddd;
+    color: #777;
+    padding: 1em;
+    padding-right: 0;
+    margin: 1.5em 0;
+    font-size: 0.95em;
+  }
+  blockquote > :first-child {
+    margin-top: 0;
+  }
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+  a {
+    color: rgb(97, 161, 200);
+  }
+}

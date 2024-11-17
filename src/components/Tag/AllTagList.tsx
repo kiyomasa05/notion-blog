@@ -4,9 +4,9 @@ import React from "react";
 type Props = {
   tags: string[];
 };
-// もう一つ、タグをpage側のheadと、最後にもたす
-// 日本語のタグが文字化けしてしまうのも解消
-export const AllTagList = async (props: Props) => {
+
+// TODO日本語のタグが文字化けしてしまうのも解消
+const AllTagList = async (props: Props) => {
   const { tags } = props;
   return (
     <div className="mx-4">

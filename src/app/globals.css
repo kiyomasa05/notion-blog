@@ -2,61 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #FCD4D5;
-}
+/* 後ほど変更 */
 img {
   max-width: 100%;
   max-height: 300px;
   object-fit: cover;
   margin: 10px auto;
 }
-h1 {
-  font-size: 2rem;
-  margin-top: 10px;
-  border-bottom: 1mm ridge #4169e1;
-}
-h2 {
-  font-size: 1.8rem;
-  border-bottom: 1mm ridge #617dcf;
-}
-h3 {
-  font-size: 1.3rem;
-  margin: 5px 1px;
-}
-
-p {
-  margin: 6px 0;
-  font-weight: 400;
-  line-height: 1.6rem;
-}
-ul {
-  list-style: disc;
-  padding-left: 40px;
-  margin: 6px 0;
-}
-li {
-  font-weight: 400;
-  line-height: 1.6rem;
-}
-blockquote {
-    border-left: .4rem solid #ddd;
-    color: #777;
-    padding: 1em;
-    padding-right: 0;
-    margin: 1.5em 0;
-    font-size: .95em;
-}
-blockquote>:first-child {
-  margin-top: 0;
-}
-blockquote>:last-child {
-  margin-bottom: 0;
-}
-a{
-  color:rgb(97, 161, 200)
-}
-
 /* 960px以上に適用されるCSS（PC用） */
 @media screen and (min-width: 960px) {
   img {
