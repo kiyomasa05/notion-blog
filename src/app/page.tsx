@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { getAllTags, getPostsForTopPage } from "./lib/notionAPI";
 import SinglePost from "@/components/Blog/SinglePost";
+import Footer from "@/components/Navbar/Footer";
 import Slider from "@/components/Splide/Splide";
 import Tag from "@/components/Tag/AllTagList";
-import Footer from "@/components/Navbar/Footer";
 
 export default async function Home() {
   const sixPosts = await getPostsForTopPage(6);

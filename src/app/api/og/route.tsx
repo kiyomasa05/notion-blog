@@ -1,7 +1,5 @@
 import { ImageResponse } from "next/og";
 import { BLOG_TITLE } from "@/app/constants/constans";
-import { PostMetaData } from "@/types/notion";
-import { getAllPosts } from "@/app/lib/notionAPI";
 
 export const runtime = "edge";
 
