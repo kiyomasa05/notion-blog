@@ -1,9 +1,9 @@
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
 import Header from "@/components/Navbar/Header";
 import "./globals.css";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -26,6 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={`${notoSansJP.className} bg-slate-100`}>
+      <GoogleTagManager gtmId="G-84KEZ5MRPH" />
       <body>
         <Header />
         {children}
