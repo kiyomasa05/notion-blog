@@ -10,6 +10,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
+    "@next/third-parties": "^15.0.4-canary.45",
     "@notionhq/client": "^2.2.14",
     "@splidejs/react-splide": "^0.7.12",
     "@vercel/og": "^0.6.2",

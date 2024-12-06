@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import { BLOG_DISCRIPTION, BLOG_TITLE } from "./constants/constans";
 import Header from "@/components/Navbar/Header";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
         <Header />
         {children}
       </body>
+      <GoogleAnalytics gaId="G-84KEZ5MRPH" />
     </html>
   );
 }
